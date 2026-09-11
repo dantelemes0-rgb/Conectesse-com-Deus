@@ -22,7 +22,7 @@
         <a class="nav-link active" href="#inicio"><span class="nav-icon">⌂</span> Visão geral</a>
         <a class="nav-link" href="#trilhas"><span class="nav-icon">◈</span> Trilhas de estudo</a>
         <a class="nav-link" href="#biblioteca"><span class="nav-icon">▤</span> Biblioteca</a>
-        <a class="nav-link" href="#notas"><span class="nav-icon">✎</span> Minhas notas</a>
+        <a class="nav-link" href="#minhas-notas"><span class="nav-icon">✎</span> Minhas notas</a>
       </nav>
       <div class="sidebar-spacer"></div>
       <div class="streak-card">
@@ -117,6 +117,10 @@
             <article class="catalog-card" data-category="ministerio" data-course="Homilética prática"><div class="catalog-art art-red">02</div><div class="catalog-card-body"><span class="tag">MINISTÉRIO</span><h3>Homilética prática</h3><p>8 aulas · 2h 40min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
             <article class="catalog-card" data-category="lideranca" data-course="Liderança com propósito"><div class="catalog-art art-blue">03</div><div class="catalog-card-body"><span class="tag">LIDERANÇA</span><h3>Liderança com propósito</h3><p>10 aulas · 3h 10min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
             <article class="catalog-card" data-category="familia" data-course="Aconselhamento e cuidado"><div class="catalog-art art-olive">04</div><div class="catalog-card-body"><span class="tag">FAMÍLIA E CUIDADO</span><h3>Aconselhamento e cuidado</h3><p>6 aulas · 1h 50min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
+            <article class="catalog-card" data-category="base" data-course="Teologia sistemática"><div class="catalog-art art-olive">05</div><div class="catalog-card-body"><span class="tag">BASE TEOLÓGICA</span><h3>Teologia sistemática</h3><p>14 aulas · 5h 10min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
+            <article class="catalog-card" data-category="ministerio" data-course="Missão e evangelismo"><div class="catalog-art art-sand">06</div><div class="catalog-card-body"><span class="tag">MINISTÉRIO</span><h3>Missão e evangelismo</h3><p>9 aulas · 3h 05min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
+            <article class="catalog-card" data-category="lideranca" data-course="Liderança servidora"><div class="catalog-art art-red">07</div><div class="catalog-card-body"><span class="tag">LIDERANÇA</span><h3>Liderança servidora</h3><p>7 aulas · 2h 15min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
+            <article class="catalog-card" data-category="familia" data-course="Cuidado da alma"><div class="catalog-art art-blue">08</div><div class="catalog-card-body"><span class="tag">FAMÍLIA E CUIDADO</span><h3>Cuidado da alma</h3><p>8 aulas · 2h 40min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
           </div>
         </section>
         <section class="membership-section">
@@ -124,12 +128,17 @@
           <div class="membership-points"><span>✓ Aulas organizadas por trilhas</span><span>✓ Materiais para baixar</span><span>✓ Certificado de conclusão</span></div>
           <button class="button button-dark" id="membership-button">Conhecer a formação <span>→</span></button>
         </section>
+        <section class="notes-section" id="minhas-notas">
+          <div class="section-heading"><div><p class="eyebrow">SEU CADERNO</p><h2>Minhas notas</h2></div><span class="notes-status" id="notes-status">Salvas neste dispositivo</span></div>
+          <textarea id="notes-input" placeholder="Registre uma pergunta, uma ideia ou uma referência para revisar depois..." aria-label="Minhas notas"></textarea>
+          <div class="notes-footer"><span id="notes-count">0 caracteres</span><button class="button button-dark" id="save-notes">Salvar notas <span>✓</span></button></div>
+        </section>
         <footer class="footer-note"><span>LOGOS / UM LUGAR PARA PENSAR DEVAGAR</span><span>Feito para perguntas honestas.</span></footer>
       </div>
     </main>
   </div>
   <div class="toast" id="toast" role="status">Sua próxima aula está pronta.</div>
-  <div class="lesson-modal" id="lesson-modal" aria-hidden="true"><div class="modal-backdrop" data-close-modal></div><section class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" aria-label="Fechar aula" data-close-modal>×</button><span class="tag">AULA DEMONSTRATIVA</span><h2 id="modal-title">Hermenêutica: como ler a Bíblia</h2><p>Esta aula apresenta uma visão geral do tema e organiza os primeiros passos da sua jornada de estudo.</p><div class="lesson-player"><span>▶</span><div><strong>Aula 01 · Começando a leitura</strong><small>12:40 min · disponível agora</small></div></div><button class="button button-dark" id="start-lesson">Começar aula <span>→</span></button></section></div>
+  <div class="lesson-modal" id="lesson-modal" aria-hidden="true"><div class="modal-backdrop" data-close-modal></div><section class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" aria-label="Fechar aula" data-close-modal>×</button><span class="tag">TRILHA DE ESTUDO</span><h2 id="modal-title">Hermenêutica: como ler a Bíblia</h2><p id="modal-description">Aprenda a observar contexto, gênero literário e intenção do texto antes de formular uma interpretação.</p><div class="lesson-list" id="lesson-list"></div><button class="button button-dark" id="start-lesson">Marcar próxima aula como concluída <span>✓</span></button></section></div>
   <script src="app.js"></script>
 </body>
 </html>

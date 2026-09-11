@@ -1,53 +1,25 @@
 const toast = document.querySelector('#toast');
-const continueButton = document.querySelector('#continue-button');
-const searchInput = document.querySelector('#global-search');
-const courseCards = [...document.querySelectorAll('.course-card')];
-const notificationButton = document.querySelector('[aria-label="Notificações"]');
-const profileButton = document.querySelector('[aria-label="Mais opções"]');
-const readingButton = document.querySelector('[aria-label="Abrir leitura"]');
 const lessonModal = document.querySelector('#lesson-modal');
-const modalTitle = document.querySelector('#modal-title');
+const catalogCards = [...document.querySelectorAll('.catalog-card')];
+const courseData = {
+  'Hermenêutica: como ler a Bíblia': ['Observe contexto, gênero literário e intenção do texto antes de formular uma interpretação.', ['O texto e seu contexto', 'Gêneros literários', 'Princípios de interpretação']],
+  'Homilética prática': ['Estruture mensagens bíblicas claras, fiéis ao texto e conectadas às necessidades da comunidade.', ['O que é um sermão', 'Estrutura e movimento', 'Aplicação e convite']],
+  'Liderança com propósito': ['Uma introdução à liderança servidora, tomada de decisão e cuidado com pessoas.', ['Chamado e caráter', 'Liderar servindo', 'Decisões responsáveis']],
+  'Aconselhamento e cuidado': ['Princípios de escuta, presença e cuidado pastoral para conversas difíceis.', ['Escuta atenta', 'Limites e responsabilidade', 'Encaminhamento e acompanhamento']]
+};
 
 function showToast(message) {
   toast.textContent = message;
   toast.classList.add('show');
-  window.clearTimeout(showToast.timer);
-  showToast.timer = window.setTimeout(() => toast.classList.remove('show'), 2800);
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(() => toast.classList.remove('show'), 2800);
 }
 
-continueButton.addEventListener('click', () => {
-  document.querySelector('#trilhas').scrollIntoView({ behavior: 'smooth' });
-  showToast('Aula 05: O que é teologia?');
-});
-
-searchInput.addEventListener('input', (event) => {
-  const query = event.target.value.trim().toLowerCase();
-  courseCards.forEach((card) => {
-    card.hidden = query.length > 0 && !card.textContent.toLowerCase().includes(query);
-  });
-  if (query) showToast(`${courseCards.filter((card) => !card.hidden).length} resultado(s) encontrado(s)`);
-});
-
-document.querySelectorAll('.nav-link').forEach((link) => {
-  link.addEventListener('click', () => {
-    document.querySelectorAll('.nav-link').forEach((item) => item.classList.remove('active'));
-    link.classList.add('active');
-  });
-});
-
-document.querySelectorAll('.course-card, .reading-panel, .timeline-panel').forEach((card) => {
-  card.addEventListener('click', () => showToast('Recurso selecionado. Em breve você poderá aprofundar este tema.'));
-});
-
-notificationButton.addEventListener('click', () => showToast('Você tem 1 revisão pendente para hoje.'));
-profileButton.addEventListener('click', () => showToast('Perfil de Dante Alves · Explorador'));
-readingButton.addEventListener('click', (event) => {
-  event.stopPropagation();
-  showToast('Leitura aberta: O que significa viver bem?');
-});
-
 function openLesson(courseName) {
-  modalTitle.textContent = courseName;
+  const [description, lessons] = courseData[courseName] || ['Conteúdo introdutório para avançar com método no seu estudo.', ['Aula de abertura', 'Leitura orientada', 'Revisão do tema']];
+  document.querySelector('#modal-title').textContent = courseName;
+  document.querySelector('#modal-description').textContent = description;
+  document.querySelector('#lesson-list').innerHTML = lessons.map((lesson, index) => `<div class="lesson-row"><span>${String(index + 1).padStart(2, '0')}</span><strong>${lesson}</strong><small>${index === 0 ? 'Próxima aula' : 'Aula disponível'}</small></div>`).join('');
   lessonModal.classList.add('open');
   lessonModal.setAttribute('aria-hidden', 'false');
 }
@@ -57,31 +29,46 @@ function closeLesson() {
   lessonModal.setAttribute('aria-hidden', 'true');
 }
 
-document.querySelectorAll('.catalog-card').forEach((card) => {
-  card.addEventListener('click', () => openLesson(card.dataset.course));
+document.querySelector('#continue-button').addEventListener('click', () => {
+  document.querySelector('#trilhas').scrollIntoView({ behavior: 'smooth' });
+  showToast('Aula 05: O que é teologia?');
 });
 
+function applySearch(query) {
+  const text = query.trim().toLowerCase();
+  catalogCards.forEach((card) => { card.hidden = Boolean(text) && !card.textContent.toLowerCase().includes(text); });
+  if (text) showToast(`${catalogCards.filter((card) => !card.hidden).length} curso(s) encontrado(s)`);
+}
+
+document.querySelector('#global-search').addEventListener('input', (event) => applySearch(event.target.value));
+document.querySelectorAll('.nav-link').forEach((link) => link.addEventListener('click', () => {
+  document.querySelectorAll('.nav-link').forEach((item) => item.classList.remove('active'));
+  link.classList.add('active');
+}));
+document.querySelectorAll('.catalog-card').forEach((card) => card.addEventListener('click', () => openLesson(card.dataset.course)));
 document.querySelectorAll('[data-close-modal]').forEach((element) => element.addEventListener('click', closeLesson));
+document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeLesson(); });
 document.querySelector('#start-lesson').addEventListener('click', () => {
+  const completed = Number(localStorage.getItem('logos-aulas-concluidas') || 0) + 1;
+  localStorage.setItem('logos-aulas-concluidas', completed);
   closeLesson();
-  showToast('Aula iniciada. Seu progresso será salvo neste dispositivo.');
+  showToast(`Aula concluída. ${completed} aula(s) registrada(s) neste dispositivo.`);
 });
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') closeLesson();
-});
+document.querySelectorAll('.filter-button').forEach((button) => button.addEventListener('click', () => {
+  document.querySelectorAll('.filter-button').forEach((item) => item.classList.remove('active'));
+  button.classList.add('active');
+  const filter = button.dataset.filter;
+  catalogCards.forEach((card) => { card.hidden = filter !== 'todos' && card.dataset.category !== filter; });
+}));
+document.querySelector('[aria-label="Notificações"]').addEventListener('click', () => showToast('Você tem 1 revisão pendente para hoje.'));
+document.querySelector('[aria-label="Mais opções"]').addEventListener('click', () => showToast('Perfil de Dante Alves · Explorador'));
+document.querySelector('[aria-label="Abrir leitura"]').addEventListener('click', () => showToast('Leitura aberta: O que significa viver bem?'));
+document.querySelector('#membership-button').addEventListener('click', () => { document.querySelector('#catalogo').scrollIntoView({ behavior: 'smooth' }); showToast('Escolha uma trilha para começar.'); });
 
-document.querySelectorAll('.filter-button').forEach((button) => {
-  button.addEventListener('click', () => {
-    document.querySelectorAll('.filter-button').forEach((item) => item.classList.remove('active'));
-    button.classList.add('active');
-    const filter = button.dataset.filter;
-    document.querySelectorAll('.catalog-card').forEach((card) => {
-      card.hidden = filter !== 'todos' && card.dataset.category !== filter;
-    });
-  });
-});
-
-document.querySelector('#membership-button').addEventListener('click', () => {
-  document.querySelector('#catalogo').scrollIntoView({ behavior: 'smooth' });
-  showToast('Escolha uma trilha para começar sua formação.');
-});
+const notesInput = document.querySelector('#notes-input');
+const notesCount = document.querySelector('#notes-count');
+const savedNotes = localStorage.getItem('logos-notas') || '';
+notesInput.value = savedNotes;
+notesCount.textContent = `${savedNotes.length} caracteres`;
+notesInput.addEventListener('input', () => { notesCount.textContent = `${notesInput.value.length} caracteres`; });
+document.querySelector('#save-notes').addEventListener('click', () => { localStorage.setItem('logos-notas', notesInput.value); document.querySelector('#notes-status').textContent = 'Salvas agora'; showToast('Suas notas foram salvas neste dispositivo.'); });
