@@ -65,9 +65,8 @@ document.querySelectorAll('.nav-link').forEach((link) => link.addEventListener('
 document.querySelectorAll('.catalog-card').forEach((card) => card.addEventListener('click', () => openLesson(card.dataset.course)));
 document.querySelectorAll('[data-close-modal]').forEach((element) => element.addEventListener('click', closeLesson));
 document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeLesson(); });
-document.querySelector('#start-lesson').addEventListener('click', () => {
-  const completed = Number(localStorage.getItem('logos-aulas-concluidas') || 0) + 1;
-  localStorage.setItem('logos-aulas-concluidas', completed);
+document.querySelector('#start-lesson').addEventListener('click', async () => {
+  const completed = await window.logosBackend.completeLesson(document.querySelector('#modal-title').textContent);
   closeLesson();
   showToast(`Aula concluída. ${completed} aula(s) registrada(s) neste dispositivo.`);
 });
@@ -89,4 +88,8 @@ notesInput.value = savedNotes;
 notesCount.textContent = `${savedNotes.length} caracteres`;
 notesInput.addEventListener('input', () => { notesCount.textContent = `${notesInput.value.length} caracteres`; });
 notesInput.addEventListener('change', () => { notesCount.textContent = `${notesInput.value.length} caracteres`; });
-document.querySelector('#save-notes').addEventListener('click', () => { localStorage.setItem('logos-notas', notesInput.value); document.querySelector('#notes-status').textContent = 'Salvas agora'; showToast('Suas notas foram salvas neste dispositivo.'); });
+document.querySelector('#save-notes').addEventListener('click', async () => {
+  await window.logosBackend.saveNotes(notesInput.value);
+  document.querySelector('#notes-status').textContent = window.logosBackend.enabled ? 'Sincronizadas online' : 'Salvas agora';
+  showToast(window.logosBackend.enabled ? 'Notas sincronizadas online.' : 'Suas notas foram salvas neste dispositivo.');
+});
