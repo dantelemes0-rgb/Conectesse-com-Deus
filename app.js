@@ -5,7 +5,11 @@ const courseData = {
   'Hermenêutica: como ler a Bíblia': ['Observe contexto, gênero literário e intenção do texto antes de formular uma interpretação.', ['O texto e seu contexto', 'Gêneros literários', 'Princípios de interpretação']],
   'Homilética prática': ['Estruture mensagens bíblicas claras, fiéis ao texto e conectadas às necessidades da comunidade.', ['O que é um sermão', 'Estrutura e movimento', 'Aplicação e convite']],
   'Liderança com propósito': ['Uma introdução à liderança servidora, tomada de decisão e cuidado com pessoas.', ['Chamado e caráter', 'Liderar servindo', 'Decisões responsáveis']],
-  'Aconselhamento e cuidado': ['Princípios de escuta, presença e cuidado pastoral para conversas difíceis.', ['Escuta atenta', 'Limites e responsabilidade', 'Encaminhamento e acompanhamento']]
+  'Aconselhamento e cuidado': ['Princípios de escuta, presença e cuidado pastoral para conversas difíceis.', ['Escuta atenta', 'Limites e responsabilidade', 'Encaminhamento e acompanhamento']],
+  'Teologia sistemática': ['Organize os principais temas da fé cristã e compare suas relações com clareza.', ['Doutrina de Deus', 'Cristologia', 'Igreja e esperança']],
+  'Missão e evangelismo': ['Descubra princípios bíblicos para comunicar a fé com presença, respeito e responsabilidade.', ['A missão nas Escrituras', 'Conversas significativas', 'Prática e acompanhamento']],
+  'Liderança servidora': ['Aprenda a cuidar de equipes, delegar com sabedoria e formar novas lideranças.', ['Caráter e serviço', 'Cultura de equipe', 'Formação de pessoas']],
+  'Cuidado da alma': ['Uma trilha introdutória sobre presença, limites e práticas de cuidado integral.', ['Escuta e presença', 'Descanso e limites', 'Comunidade e esperança']]
 };
 
 function showToast(message) {
@@ -19,7 +23,20 @@ function openLesson(courseName) {
   const [description, lessons] = courseData[courseName] || ['Conteúdo introdutório para avançar com método no seu estudo.', ['Aula de abertura', 'Leitura orientada', 'Revisão do tema']];
   document.querySelector('#modal-title').textContent = courseName;
   document.querySelector('#modal-description').textContent = description;
-  document.querySelector('#lesson-list').innerHTML = lessons.map((lesson, index) => `<div class="lesson-row"><span>${String(index + 1).padStart(2, '0')}</span><strong>${lesson}</strong><small>${index === 0 ? 'Próxima aula' : 'Aula disponível'}</small></div>`).join('');
+  const lessonList = document.querySelector('#lesson-list');
+  lessonList.replaceChildren();
+  lessons.forEach((lesson, index) => {
+    const row = document.createElement('div');
+    row.className = 'lesson-row';
+    const number = document.createElement('span');
+    number.textContent = String(index + 1).padStart(2, '0');
+    const title = document.createElement('strong');
+    title.textContent = lesson;
+    const status = document.createElement('small');
+    status.textContent = index === 0 ? 'Próxima aula' : 'Aula disponível';
+    row.append(number, title, status);
+    lessonList.append(row);
+  });
   lessonModal.classList.add('open');
   lessonModal.setAttribute('aria-hidden', 'false');
 }
