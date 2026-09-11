@@ -29,5 +29,5 @@
     }
   };
 
-  window.logosBackend.startAnonymousSession();
+  window.logosBackend.startAnonymousSession().catch(() => {});
 }());
