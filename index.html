@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Um espaço completo para estudar teologia com método e profundidade.">
+  <title>Logos | Estudo de Teologia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#inicio" aria-label="Logos início">
+        <span class="brand-mark">λ</span>
+        <span>logos<span class="brand-dot">.</span></span>
+      </a>
+      <p class="eyebrow sidebar-label">Seu seminário pessoal</p>
+      <nav class="primary-nav" aria-label="Navegação principal">
+        <a class="nav-link active" href="#inicio"><span class="nav-icon">⌂</span> Visão geral</a>
+        <a class="nav-link" href="#trilhas"><span class="nav-icon">◈</span> Trilhas de estudo</a>
+        <a class="nav-link" href="#biblioteca"><span class="nav-icon">▤</span> Biblioteca</a>
+        <a class="nav-link" href="#notas"><span class="nav-icon">✎</span> Minhas notas</a>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="streak-card">
+        <span class="streak-symbol">✦</span>
+        <div>
+          <strong>7 dias seguidos</strong>
+          <p>Continue cultivando o hábito.</p>
+        </div>
+      </div>
+      <div class="profile">
+        <div class="avatar">DA</div>
+        <div><strong>Dante Alves</strong><span>Explorador</span></div>
+        <button class="more-button" aria-label="Mais opções">•••</button>
+      </div>
+    </aside>
+
+    <main class="main-content" id="inicio">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>Início</span><span>/</span><strong>Visão geral</strong></div>
+        <label class="search-field"><span>⌕</span><input id="global-search" type="search" placeholder="Buscar um tema, autor ou livro..." aria-label="Buscar um tema, autor ou livro"></label>
+        <button class="icon-button" aria-label="Notificações">♧<span class="notification-dot"></span></button>
+      </header>
+
+      <div class="content-wrap">
+        <section class="welcome-section" aria-labelledby="welcome-title">
+          <div>
+            <p class="eyebrow">QUINTA-FEIRA, 10 DE SETEMBRO</p>
+            <h1 id="welcome-title">Olá, Dante<span class="title-dot">.</span></h1>
+            <p class="subtitle">O conhecimento cresce quando a curiosidade encontra uma boa pergunta.</p>
+          </div>
+          <button class="button button-dark" id="continue-button">Continuar estudando <span>→</span></button>
+        </section>
+
+        <section class="progress-grid" aria-label="Resumo dos seus estudos">
+          <article class="progress-card warm-card">
+            <div class="card-topline"><span class="eyebrow">TRILHA ATUAL</span><span class="progress-percent">32%</span></div>
+            <h2>Introdução à Teologia</h2>
+            <div class="progress-track"><span style="width:32%"></span></div>
+            <div class="card-meta"><span>4 de 12 aulas concluídas</span><span>↗</span></div>
+          </article>
+          <article class="progress-card blue-card">
+            <div class="card-topline"><span class="eyebrow">TEMPO DE ESTUDO</span><span class="card-icon">◷</span></div>
+            <strong class="big-number">04<span>h</span> 28<span>min</span></strong>
+            <div class="card-meta"><span>+42 min esta semana</span><span class="positive">↑ 18%</span></div>
+          </article>
+          <article class="progress-card dark-card">
+            <div class="card-topline"><span class="eyebrow">CONHECIMENTO</span><span class="card-icon">✦</span></div>
+            <strong class="big-number">18<span> conceitos</span></strong>
+            <div class="card-meta"><span>5 para revisar hoje</span><span>→</span></div>
+          </article>
+        </section>
+
+        <section class="section-block" id="trilhas">
+          <div class="section-heading"><div><p class="eyebrow">APRENDIZADO GUIADO</p><h2>Suas trilhas</h2></div><a class="text-link" href="#biblioteca">Ver todas <span>→</span></a></div>
+          <div class="course-grid">
+            <article class="course-card course-featured">
+              <div class="course-visual visual-olive"><span class="course-number">01</span><span class="visual-mark">✺</span><span class="visual-caption">A busca pelo sentido</span></div>
+              <div class="course-body"><span class="tag">EM ANDAMENTO</span><h3>Introdução à Teologia</h3><p>As grandes perguntas, os métodos e as vozes que moldaram o pensamento teológico.</p><div class="course-footer"><span>12 aulas · 3h 40min</span><span class="course-progress">32%</span></div></div>
+            </article>
+            <article class="course-card">
+              <div class="course-visual visual-clay"><span class="course-number">02</span><span class="visual-mark roman-mark">I—V</span><span class="visual-caption">Vozes através do tempo</span></div>
+              <div class="course-body"><span class="tag tag-muted">PRÓXIMA TRILHA</span><h3>História do Cristianismo</h3><p>De Jerusalém à contemporaneidade: movimentos, concílios e transformações.</p><div class="course-footer"><span>18 aulas · 5h 20min</span><span class="course-arrow">→</span></div></div>
+            </article>
+            <article class="course-card">
+              <div class="course-visual visual-ink"><span class="course-number">03</span><span class="visual-mark">☼</span><span class="visual-caption">O texto e suas camadas</span></div>
+              <div class="course-body"><span class="tag tag-muted">PRÓXIMA TRILHA</span><h3>Leitura Bíblica</h3><p>Contexto, gênero e ferramentas para uma leitura mais atenta das Escrituras.</p><div class="course-footer"><span>15 aulas · 4h 10min</span><span class="course-arrow">→</span></div></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="lower-grid" id="biblioteca">
+          <article class="reading-panel">
+            <div class="section-heading"><div><p class="eyebrow">PARA HOJE</p><h2>Leitura recomendada</h2></div><button class="round-button" aria-label="Abrir leitura">↗</button></div>
+            <div class="reading-content"><div class="book-cover"><span>ÉTICA<br><i>A Nicômaco</i></span><small>ARISTÓTELES</small></div><div class="reading-info"><span class="tag">FILOSOFIA</span><h3>O que significa viver bem?</h3><p>Uma introdução à ética das virtudes e à pergunta que atravessa toda vida humana.</p><div class="reading-meta"><span>12 min de leitura</span><span>•</span><span>Cap. 1</span></div></div></div>
+          </article>
+          <article class="timeline-panel" id="notas">
+            <div class="section-heading"><div><p class="eyebrow">EXPLORE</p><h2>Mapa de ideias</h2></div><a class="text-link" href="#trilhas">Abrir mapa <span>↗</span></a></div>
+            <div class="timeline"><div class="timeline-line"></div><div class="timeline-item"><span class="timeline-year">SÉC. IV a.C.</span><div><strong>Aristóteles</strong><p>Ética, virtude e a vida boa</p></div></div><div class="timeline-item"><span class="timeline-year">SÉC. V d.C.</span><div><strong>Agostinho</strong><p>Interioridade e desejo</p></div></div><div class="timeline-item"><span class="timeline-year">SÉC. XX</span><div><strong>Paul Tillich</strong><p>Coragem de ser</p></div></div></div>
+          </article>
+        </section>
+        <section class="catalog-section" id="catalogo">
+          <div class="section-heading catalog-heading"><div><p class="eyebrow">CATÁLOGO DE FORMAÇÃO</p><h2>Encontre seu próximo estudo</h2></div><span class="catalog-count">12 cursos disponíveis</span></div>
+          <div class="filter-bar" role="toolbar" aria-label="Filtrar cursos">
+            <button class="filter-button active" data-filter="todos">Todos</button>
+            <button class="filter-button" data-filter="base">Base teológica</button>
+            <button class="filter-button" data-filter="ministerio">Ministério</button>
+            <button class="filter-button" data-filter="lideranca">Liderança</button>
+            <button class="filter-button" data-filter="familia">Família e cuidado</button>
+          </div>
+          <div class="catalog-grid">
+            <article class="catalog-card" data-category="base" data-course="Hermenêutica: como ler a Bíblia"><div class="catalog-art art-sand">01</div><div class="catalog-card-body"><span class="tag">BASE TEOLÓGICA</span><h3>Hermenêutica: como ler a Bíblia</h3><p>12 aulas · 4h 20min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
+            <article class="catalog-card" data-category="ministerio" data-course="Homilética prática"><div class="catalog-art art-red">02</div><div class="catalog-card-body"><span class="tag">MINISTÉRIO</span><h3>Homilética prática</h3><p>8 aulas · 2h 40min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
+            <article class="catalog-card" data-category="lideranca" data-course="Liderança com propósito"><div class="catalog-art art-blue">03</div><div class="catalog-card-body"><span class="tag">LIDERANÇA</span><h3>Liderança com propósito</h3><p>10 aulas · 3h 10min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
+            <article class="catalog-card" data-category="familia" data-course="Aconselhamento e cuidado"><div class="catalog-art art-olive">04</div><div class="catalog-card-body"><span class="tag">FAMÍLIA E CUIDADO</span><h3>Aconselhamento e cuidado</h3><p>6 aulas · 1h 50min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
+          </div>
+        </section>
+        <section class="membership-section">
+          <div><p class="eyebrow">CAMINHO COMPLETO</p><h2>Uma biblioteca para acompanhar sua vocação.</h2><p>Comece pelo essencial, avance no seu ritmo e volte aos temas quando precisar.</p></div>
+          <div class="membership-points"><span>✓ Aulas organizadas por trilhas</span><span>✓ Materiais para baixar</span><span>✓ Certificado de conclusão</span></div>
+          <button class="button button-dark" id="membership-button">Conhecer a formação <span>→</span></button>
+        </section>
+        <footer class="footer-note"><span>LOGOS / UM LUGAR PARA PENSAR DEVAGAR</span><span>Feito para perguntas honestas.</span></footer>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status">Sua próxima aula está pronta.</div>
+  <div class="lesson-modal" id="lesson-modal" aria-hidden="true"><div class="modal-backdrop" data-close-modal></div><section class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" aria-label="Fechar aula" data-close-modal>×</button><span class="tag">AULA DEMONSTRATIVA</span><h2 id="modal-title">Hermenêutica: como ler a Bíblia</h2><p>Esta aula apresenta uma visão geral do tema e organiza os primeiros passos da sua jornada de estudo.</p><div class="lesson-player"><span>▶</span><div><strong>Aula 01 · Começando a leitura</strong><small>12:40 min · disponível agora</small></div></div><button class="button button-dark" id="start-lesson">Começar aula <span>→</span></button></section></div>
+  <script src="app.js"></script>
+</body>
+</html>
