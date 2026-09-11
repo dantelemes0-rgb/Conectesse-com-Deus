@@ -29,7 +29,7 @@ function openLesson(courseName) {
     const row = document.createElement('div');
     row.className = 'lesson-row';
     const number = document.createElement('span');
-    number.textContent = String(index + 1).padStart(2, '0');
+    number.textContent = index < 9 ? `0${index + 1}` : String(index + 1);
     const title = document.createElement('strong');
     title.textContent = lesson;
     const status = document.createElement('small');
@@ -88,4 +88,5 @@ const savedNotes = localStorage.getItem('logos-notas') || '';
 notesInput.value = savedNotes;
 notesCount.textContent = `${savedNotes.length} caracteres`;
 notesInput.addEventListener('input', () => { notesCount.textContent = `${notesInput.value.length} caracteres`; });
+notesInput.addEventListener('change', () => { notesCount.textContent = `${notesInput.value.length} caracteres`; });
 document.querySelector('#save-notes').addEventListener('click', () => { localStorage.setItem('logos-notas', notesInput.value); document.querySelector('#notes-status').textContent = 'Salvas agora'; showToast('Suas notas foram salvas neste dispositivo.'); });
