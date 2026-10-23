@@ -1,0 +1,1 @@
+function e(e){let t=e.trim();if(!t)return`?`;if(!t.includes(` `))return t.slice(0,2).toUpperCase();let n=t.split(/\s+/);return`${n[0]?.[0]??``}${n.at(-1)?.[0]??``}`.toUpperCase()}export{e as t};

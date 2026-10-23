@@ -1,0 +1,4120 @@
+<!DOCTYPE html><html lang="pt-BR" data-theme="light"> <head><meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>Construtor de Pregações com IA — Clareira</title> <meta name="description" content="Construtor de Pregações com IA: transforme o estudo do texto bíblico em um esboço editável, salvo e pronto para o púlpito."> <link rel="canonical" href="https://dantelemes0-rgb.github.io/Conectesse-com-Deus/pregacoes/"> <meta name="robots" content="index, follow, max-image-preview:large"> <meta name="author" content="Clareira"> <meta name="generator" content="Astro v7.4.1"> <meta property="og:type" content="website"> <meta property="og:site_name" content="Clareira"> <meta property="og:locale" content="pt_BR"> <meta property="og:title" content="Construtor de Pregações com IA — Clareira"> <meta property="og:description" content="Construtor de Pregações com IA: transforme o estudo do texto bíblico em um esboço editável, salvo e pronto para o púlpito."> <meta property="og:url" content="https://dantelemes0-rgb.github.io/Conectesse-com-Deus/pregacoes/"> <meta property="og:image" content="https://dantelemes0-rgb.github.io/Conectesse-com-Deus/og-image.png"> <meta property="og:image:width" content="1200"> <meta property="og:image:height" content="630"> <meta property="og:image:alt" content="Clareira — teologia bíblica e sistemática"> <meta name="twitter:card" content="summary_large_image"> <meta name="twitter:title" content="Construtor de Pregações com IA — Clareira"> <meta name="twitter:description" content="Construtor de Pregações com IA: transforme o estudo do texto bíblico em um esboço editável, salvo e pronto para o púlpito."> <meta name="twitter:image" content="https://dantelemes0-rgb.github.io/Conectesse-com-Deus/og-image.png"> <meta name="twitter:image:alt" content="Clareira — teologia bíblica e sistemática"> <meta name="color-scheme" content="light dark"><meta name="theme-color" content="#f4efe6"><link rel="icon" href="/Conectesse-com-Deus/favicon.svg" type="image/svg+xml"><link rel="icon" href="/Conectesse-com-Deus/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/Conectesse-com-Deus/apple-touch-icon.png"><script>
+      // Aplica o tema antes da pintura para evitar o "flash" de cor.
+      (function () {
+        try {
+          const salvo = localStorage.getItem('clareira.pregacoes.tema');
+          const escuro = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.dataset.theme =
+            salvo === 'dark' || salvo === 'light' ? salvo : escuro ? 'dark' : 'light';
+        } catch {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script><style>
+      /* =========================================================================
+         1. Tokens, reset e base
+         ========================================================================= */
+      :root {
+        color-scheme: light;
+        --font-ui: 'Manrope Variable', 'Manrope', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        --font-serif:
+          'Newsreader Variable', 'Newsreader', 'Iowan Old Style', 'Palatino Linotype',
+          'Book Antiqua', Georgia, serif;
+        --font-display:
+          'Newsreader Variable', 'Newsreader', 'Iowan Old Style', 'Palatino Linotype',
+          'Book Antiqua', Georgia, serif;
+        --font-mono: 'DM Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+        --wpm: 130;
+
+        --bg: #f4efe6;
+        --bg-deep: #ece4d7;
+        --paper: #fffdf8;
+        --paper-soft: #faf5ec;
+        --field: #fbf7f0;
+        --ink: #22323b;
+        --ink-strong: #102a3c;
+        --muted: #6b675f;
+        --muted-soft: #8c877d;
+        --line: #ddd2c0;
+        --line-soft: #ebe3d5;
+        --primary: #112f42;
+        --primary-hover: #0a2434;
+        --on-primary: #fbf6ec;
+        --on-primary-accent: #e0c18a;
+        --accent: #b88d4c;
+        --accent-strong: #7c5923;
+        --accent-soft: #f1e5ce;
+        --gold-light: #d7b372;
+        --sand: #e9dfce;
+        --sand-soft: #f2eadc;
+        --success: #3d6650;
+        --danger: #9a3d32;
+        --danger-ink: #742f27;
+        --danger-bg: #fbecea;
+        --danger-line: #ecc8c2;
+        --focus: #8b6225;
+        --glow-gold: rgba(184, 141, 76, 0.15);
+        --glow-navy: rgba(17, 47, 66, 0.06);
+        --header-bg: rgba(244, 239, 230, 0.86);
+        --toast-bg: #102b3d;
+        --toast-ink: #f7efe2;
+        --toast-action: #e6c78f;
+        --toast-line: rgba(215, 179, 114, 0.28);
+        --edit-hover: rgba(184, 141, 76, 0.075);
+        --pulpit-bg: #f7f1e6;
+        --pulpit-topbar: rgba(247, 241, 230, 0.9);
+
+        --shadow-soft: 0 1px 2px rgba(27, 38, 44, 0.04), 0 8px 24px rgba(27, 38, 44, 0.04);
+        --shadow-card: 0 1px 2px rgba(27, 38, 44, 0.04), 0 18px 50px rgba(33, 46, 55, 0.07);
+        --shadow-deep: 0 2px 4px rgba(27, 38, 44, 0.04), 0 28px 70px rgba(27, 38, 44, 0.09);
+        --radius-sm: 9px;
+        --radius-md: 14px;
+        --radius-lg: 22px;
+        --radius-xl: 26px;
+      }
+
+      html[data-theme='dark'] {
+        color-scheme: dark;
+        --bg: #08151e;
+        --bg-deep: #061119;
+        --paper: #10232f;
+        --paper-soft: #0d1e29;
+        --field: #0b1b25;
+        --ink: #ebe3d6;
+        --ink-strong: #fbf5ea;
+        --muted: #a9a9a1;
+        --muted-soft: #8e948f;
+        --line: #2b3d48;
+        --line-soft: #20323d;
+        --primary: #e8dcc7;
+        --primary-hover: #f2e8d6;
+        --on-primary: #0f2431;
+        --on-primary-accent: #8a6227;
+        --accent: #d4ae6b;
+        --accent-strong: #e3c58e;
+        --accent-soft: #2a2a21;
+        --gold-light: #e0c18a;
+        --sand: #283a45;
+        --sand-soft: #172a35;
+        --success: #9ac3a8;
+        --danger: #e4a39a;
+        --danger-ink: #f3c0b9;
+        --danger-bg: #2b1d1d;
+        --danger-line: #4b2d2b;
+        --focus: #e8c68a;
+        --glow-gold: rgba(212, 174, 107, 0.07);
+        --glow-navy: rgba(54, 94, 116, 0.16);
+        --header-bg: rgba(8, 21, 30, 0.86);
+        --toast-bg: #eaddc6;
+        --toast-ink: #102534;
+        --toast-action: #6f4c17;
+        --toast-line: rgba(17, 47, 66, 0.16);
+        --edit-hover: rgba(212, 174, 107, 0.08);
+        --pulpit-bg: #08151e;
+        --pulpit-topbar: rgba(8, 21, 30, 0.9);
+
+        --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.24), 0 10px 28px rgba(0, 0, 0, 0.18);
+        --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 22px 60px rgba(0, 0, 0, 0.24);
+        --shadow-deep: 0 2px 6px rgba(0, 0, 0, 0.32), 0 30px 80px rgba(0, 0, 0, 0.32);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 92px;
+        scrollbar-gutter: stable;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+
+      html.modal-open,
+      html.modal-open body {
+        overflow: hidden;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        color: var(--ink);
+        background:
+          radial-gradient(1100px 560px at 86% -8%, var(--glow-gold), transparent 64%),
+          radial-gradient(900px 700px at -8% 28%, var(--glow-navy), transparent 58%), var(--bg);
+        font-family: var(--font-ui);
+        font-size: 15px;
+        font-optical-sizing: auto;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      p {
+        text-wrap: pretty;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      img,
+      svg {
+        display: block;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
+        transform: none !important;
+      }
+
+      a {
+        color: var(--accent-strong);
+      }
+
+      ::selection {
+        background: var(--accent);
+        color: #fffdf8;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 2px;
+      }
+
+      .sr-only {
+        position: absolute !important;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: 10px;
+        left: 12px;
+        z-index: 300;
+        padding: 10px 14px;
+        border-radius: 8px;
+        background: var(--primary);
+        color: var(--on-primary);
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        transform: translateY(-160%);
+        transition: transform 0.2s ease;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .icon {
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .svg-sprite {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      }
+
+      /* =========================================================================
+         2. Cabeçalho e marca
+         ========================================================================= */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        border-bottom: 1px solid var(--line-soft);
+        background: var(--header-bg);
+        -webkit-backdrop-filter: blur(18px);
+        backdrop-filter: blur(18px);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        width: min(100%, 1370px);
+        min-height: 70px;
+        margin: 0 auto;
+        padding: 0 clamp(16px, 4vw, 42px);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        min-height: 44px;
+        color: var(--ink-strong);
+        text-decoration: none;
+        border-radius: 10px;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        flex: 0 0 auto;
+        color: var(--accent);
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.02;
+      }
+
+      .brand-name {
+        font-family: var(--font-display);
+        font-size: 25px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+
+      .brand-sub {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      .header-nav {
+        display: none;
+        align-items: center;
+        gap: 2px;
+        margin-left: auto;
+      }
+
+      .header-nav__link {
+        padding: 8px 10px;
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 11.5px;
+        font-weight: 600;
+        line-height: 1.2;
+        text-decoration: none;
+        white-space: nowrap;
+        transition:
+          background 0.18s ease,
+          color 0.18s ease;
+      }
+
+      .header-nav__link:hover {
+        background: var(--sand-soft);
+        color: var(--ink-strong);
+      }
+
+      .header-nav__link[aria-current='page'] {
+        background: var(--sand-soft);
+        color: var(--ink-strong);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .header-nav + .header-actions {
+        margin-left: 10px;
+      }
+
+      .icon-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        min-height: 42px;
+        padding: 8px 11px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--ink);
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1;
+        transition:
+          background 0.18s ease,
+          border-color 0.18s ease,
+          color 0.18s ease;
+      }
+
+      .icon-btn:hover {
+        border-color: var(--line);
+        background: var(--sand-soft);
+        color: var(--ink-strong);
+      }
+
+      .icon-only {
+        width: 42px;
+        padding: 0;
+      }
+
+      .count-badge {
+        display: inline-grid;
+        place-items: center;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 5px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .key-dot {
+        width: 7px;
+        height: 7px;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        background: var(--muted-soft);
+        box-shadow: 0 0 0 3px transparent;
+        transition:
+          background 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .key-dot.is-on {
+        background: var(--success);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 16%, transparent);
+      }
+
+      .optional-label {
+        display: none;
+        white-space: nowrap;
+      }
+
+      .menu-btn {
+        display: inline-flex;
+      }
+
+      /* =========================================================================
+         3. Hero
+         ========================================================================= */
+      .hero {
+        display: grid;
+        gap: 28px;
+        width: min(100%, 1370px);
+        margin: 0 auto;
+        padding: clamp(24px, 4vw, 42px) clamp(16px, 4vw, 42px) clamp(26px, 4vw, 36px);
+      }
+
+      .breadcrumb {
+        display: flex;
+        grid-column: 1 / -1;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: -10px;
+        color: var(--muted-soft);
+        font-family: var(--font-mono);
+        font-size: 9.5px;
+        letter-spacing: 0.05em;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+
+      .breadcrumb a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .breadcrumb a:hover {
+        color: var(--accent-strong);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .breadcrumb [aria-current='page'] {
+        color: var(--ink);
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0;
+        color: var(--accent-strong);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .eyebrow-line {
+        display: inline-block;
+        width: 24px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      .hero h1 {
+        max-width: 850px;
+        margin: 16px 0 20px;
+        color: var(--ink-strong);
+        font-family: var(--font-display);
+        font-size: clamp(2.8rem, 7.2vw, 5.15rem);
+        font-weight: 500;
+        letter-spacing: -0.028em;
+        line-height: 0.94;
+        text-wrap: balance;
+      }
+
+      .hero h1 em {
+        color: var(--accent-strong);
+        font-style: italic;
+        font-weight: 500;
+      }
+
+      .hero-lede {
+        max-width: 620px;
+        margin: 0;
+        color: var(--muted);
+        font-family: var(--font-serif);
+        font-size: clamp(1.02rem, 1.35vw, 1.18rem);
+        line-height: 1.7;
+      }
+
+      .hero-points {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 20px;
+        margin: 22px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .hero-points li {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.015em;
+      }
+
+      .hero-points .icon {
+        width: 14px;
+        height: 14px;
+        color: var(--accent-strong);
+      }
+
+      .hero-aside {
+        display: none;
+      }
+
+      .homily-note {
+        max-width: 280px;
+        padding: 4px 0 4px 21px;
+        border-left: 1px solid var(--accent);
+      }
+
+      .homily-note p {
+        margin: 0;
+        color: var(--ink);
+        font-family: var(--font-serif);
+        font-size: clamp(1.12rem, 1.5vw, 1.32rem);
+        font-style: italic;
+        line-height: 1.5;
+        text-wrap: pretty;
+      }
+
+      .note-caption {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 9.5px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      .note-caption::before {
+        content: '';
+        width: 14px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      /* =========================================================================
+         4. Estrutura de trabalho
+         ========================================================================= */
+      .workspace {
+        display: grid;
+        gap: 24px;
+        width: min(100%, 1370px);
+        margin: 0 auto;
+        padding: 0 clamp(16px, 4vw, 42px) clamp(46px, 7vw, 82px);
+        align-items: start;
+      }
+
+      .form-panel {
+        min-width: 0;
+        padding: clamp(20px, 2.6vw, 28px);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: var(--paper);
+        box-shadow: var(--shadow-card);
+      }
+
+      .panel-head {
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      .panel-head h2 {
+        margin: 8px 0 6px;
+        color: var(--ink-strong);
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 3vw, 2.15rem);
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        line-height: 1.1;
+      }
+
+      .panel-lede {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.65;
+      }
+
+      .draft-status {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 11px;
+        color: var(--success);
+        font-size: 10px;
+        line-height: 1.5;
+      }
+
+      .draft-status[data-state='error'] {
+        color: var(--danger);
+      }
+
+      .draft-status .icon {
+        width: 13px;
+        height: 13px;
+        flex: 0 0 auto;
+      }
+
+      .form-readiness {
+        display: flex;
+        align-items: flex-start;
+        gap: 7px;
+        margin-top: 20px;
+        padding: 10px 11px;
+        border: 1px solid var(--line-soft);
+        border-radius: var(--radius-sm);
+        background: var(--paper-soft);
+        color: var(--muted);
+        font-size: 10.5px;
+        line-height: 1.5;
+        transition:
+          border-color 0.18s ease,
+          background 0.18s ease,
+          color 0.18s ease;
+      }
+
+      .form-readiness__dot {
+        width: 7px;
+        height: 7px;
+        flex: 0 0 auto;
+        margin-top: 5px;
+        border-radius: 50%;
+        background: var(--muted-soft);
+        transition:
+          background 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      .form-readiness[data-state='ready'] {
+        border-color: color-mix(in srgb, var(--success) 28%, var(--line));
+        background: color-mix(in srgb, var(--success) 7%, var(--paper-soft));
+        color: var(--ink);
+      }
+
+      .form-readiness[data-state='ready'] .form-readiness__dot {
+        background: var(--success);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 14%, transparent);
+      }
+
+      /* =========================================================================
+         5. Formulário (sem elemento <form>)
+         ========================================================================= */
+      .field {
+        margin-top: 17px;
+        min-width: 0;
+      }
+
+      .field-label {
+        display: flex;
+        align-items: baseline;
+        gap: 5px;
+        margin-bottom: 7px;
+        color: var(--ink);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.015em;
+        line-height: 1.4;
+      }
+
+      .required {
+        color: var(--accent-strong);
+        font-size: 12px;
+        line-height: 1;
+      }
+
+      .field-hint {
+        margin: 7px 0 0;
+        color: var(--muted);
+        font-size: 10.5px;
+        line-height: 1.55;
+      }
+
+      .field-error {
+        display: flex;
+        align-items: flex-start;
+        gap: 5px;
+        margin: 7px 0 0;
+        color: var(--danger);
+        font-size: 10.5px;
+        font-weight: 500;
+        line-height: 1.5;
+      }
+
+      .field-error::before {
+        content: '!';
+        display: inline-grid;
+        place-items: center;
+        width: 13px;
+        height: 13px;
+        flex: 0 0 auto;
+        margin-top: 1px;
+        border-radius: 50%;
+        background: var(--danger);
+        color: #fff;
+        font-size: 9px;
+        font-weight: 700;
+      }
+
+      .input,
+      .select,
+      .textarea {
+        width: 100%;
+        min-height: 45px;
+        padding: 10px 13px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: var(--field);
+        color: var(--ink);
+        font-size: 14px;
+        line-height: 1.5;
+        transition:
+          border-color 0.18s ease,
+          box-shadow 0.18s ease,
+          background 0.18s ease;
+      }
+
+      .input::placeholder,
+      .textarea::placeholder {
+        color: var(--muted-soft);
+        opacity: 1;
+      }
+
+      .input:hover,
+      .select:hover,
+      .textarea:hover {
+        border-color: var(--muted-soft);
+      }
+
+      .input:focus,
+      .select:focus,
+      .textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+        background: var(--paper);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 17%, transparent);
+      }
+
+      .input[aria-invalid='true'],
+      .textarea[aria-invalid='true'] {
+        border-color: var(--danger);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 12%, transparent);
+      }
+
+      .textarea {
+        min-height: 88px;
+        resize: vertical;
+      }
+
+      .select-wrap {
+        position: relative;
+      }
+
+      .select-wrap .select {
+        appearance: none;
+        -webkit-appearance: none;
+        padding-right: 38px;
+        cursor: pointer;
+      }
+
+      .select-wrap::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        width: 6px;
+        height: 6px;
+        border-right: 1.5px solid var(--muted);
+        border-bottom: 1.5px solid var(--muted);
+        transform: translateY(-70%) rotate(45deg);
+        pointer-events: none;
+      }
+
+      .field-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px 12px;
+        margin-top: 17px;
+      }
+
+      .field-grid .field {
+        margin-top: 0;
+      }
+
+      .link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        max-width: 100%;
+        padding: 2px 0;
+        border: 0;
+        border-radius: 4px;
+        background: transparent;
+        color: var(--accent-strong);
+        font: inherit;
+        font-size: 10.5px;
+        font-weight: 600;
+        line-height: 1.5;
+        text-align: left;
+        text-decoration: underline;
+        text-decoration-color: color-mix(in srgb, var(--accent-strong) 40%, transparent);
+        text-underline-offset: 3px;
+      }
+
+      .link-btn:hover {
+        color: var(--ink);
+        text-decoration-color: currentColor;
+      }
+
+      .link-btn .icon {
+        width: 13px;
+        height: 13px;
+        transition: transform 0.18s ease;
+      }
+
+      .link-btn[aria-expanded='true'] .icon {
+        transform: rotate(180deg);
+      }
+
+      .bible-text-wrap {
+        margin-top: 11px;
+        padding: 12px;
+        border: 1px solid var(--line-soft);
+        border-radius: var(--radius-sm);
+        background: var(--paper-soft);
+      }
+
+      .bible-text-wrap .textarea {
+        min-height: 104px;
+        background: var(--field);
+        font-family: var(--font-serif);
+      }
+
+      .form-divider {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 22px 0 4px;
+        color: var(--muted);
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .form-divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--line-soft);
+      }
+
+      .form-section-label {
+        margin: 24px 0 -3px;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .field-suggestions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 5px;
+        margin-top: 8px;
+      }
+
+      .field-suggestions__label {
+        color: var(--muted);
+        font-size: 10.5px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+
+      .suggestion-chip {
+        min-height: 28px;
+        padding: 4px 8px;
+        border: 1px solid var(--line-soft);
+        border-radius: 999px;
+        background: var(--paper-soft);
+        color: var(--muted);
+        font-size: 10.5px;
+        font-weight: 600;
+        line-height: 1.2;
+        transition:
+          background 0.18s ease,
+          border-color 0.18s ease,
+          color 0.18s ease;
+      }
+
+      .suggestion-chip:hover {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+      }
+
+      .optional-toggle {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 52px;
+        margin-top: 20px;
+        padding: 9px 12px;
+        border: 1px dashed var(--line);
+        border-radius: var(--radius-sm);
+        background: var(--paper-soft);
+        color: var(--ink);
+        text-align: left;
+        transition:
+          background 0.18s ease,
+          border-color 0.18s ease;
+      }
+
+      .optional-toggle:hover {
+        border-color: var(--accent);
+        background: var(--sand-soft);
+      }
+
+      .optional-toggle__mark {
+        display: grid;
+        place-items: center;
+        width: 24px;
+        height: 24px;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        font-size: 16px;
+        line-height: 1;
+        transition: transform 0.18s ease;
+      }
+
+      .optional-toggle[aria-expanded='true'] .optional-toggle__mark {
+        transform: rotate(45deg);
+      }
+
+      .optional-toggle__text {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+      }
+
+      .optional-toggle__text strong {
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.35;
+      }
+
+      .optional-toggle__text small {
+        color: var(--muted);
+        font-size: 10.5px;
+        line-height: 1.4;
+      }
+
+      .optional-toggle__chevron {
+        width: 15px;
+        height: 15px;
+        flex: 0 0 auto;
+        color: var(--muted);
+        transition: transform 0.18s ease;
+      }
+
+      .optional-toggle[aria-expanded='true'] .optional-toggle__chevron {
+        transform: rotate(180deg);
+      }
+
+      .optional-fields {
+        padding-top: 1px;
+      }
+
+      .duration-options {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 7px;
+        margin-top: 8px;
+      }
+
+      .duration-btn {
+        min-height: 44px;
+        padding: 6px 4px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: var(--field);
+        color: var(--ink);
+        font-size: 12.5px;
+        font-weight: 600;
+        line-height: 1.1;
+        transition:
+          background 0.18s ease,
+          border-color 0.18s ease,
+          color 0.18s ease;
+      }
+
+      .duration-btn small {
+        display: block;
+        margin-top: 2px;
+        font-size: 9px;
+        font-weight: 500;
+        opacity: 0.78;
+      }
+
+      .duration-btn:hover {
+        border-color: var(--accent);
+      }
+
+      .duration-btn[aria-pressed='true'] {
+        border-color: var(--primary);
+        background: var(--primary);
+        color: var(--on-primary);
+      }
+
+      .duration-helper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 4px 12px;
+        margin-top: 7px;
+      }
+
+      .duration-helper span {
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.5;
+      }
+
+      .duration-helper strong {
+        color: var(--accent-strong);
+        font-weight: 600;
+      }
+
+      .generate-area {
+        margin-top: 22px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 10px 17px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--paper);
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.2;
+        text-align: center;
+        transition:
+          background 0.18s ease,
+          border-color 0.18s ease,
+          color 0.18s ease,
+          transform 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      .btn:hover {
+        border-color: var(--muted-soft);
+        background: var(--sand-soft);
+        color: var(--ink-strong);
+      }
+
+      .btn .icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      .btn--primary {
+        border-color: var(--primary);
+        background: var(--primary);
+        color: var(--on-primary);
+        box-shadow: 0 10px 24px rgba(12, 35, 49, 0.16);
+      }
+
+      .btn--primary:hover {
+        border-color: var(--primary-hover);
+        background: var(--primary-hover);
+        color: var(--on-primary);
+        transform: translateY(-1px);
+        box-shadow: 0 14px 30px rgba(12, 35, 49, 0.2);
+      }
+
+      .btn--primary .icon {
+        color: var(--on-primary-accent);
+      }
+
+      .btn--gold {
+        border-color: color-mix(in srgb, var(--accent) 30%, var(--line));
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+      }
+
+      .btn--gold:hover {
+        border-color: var(--accent);
+        background: var(--sand);
+        color: var(--ink-strong);
+      }
+
+      .btn--ghost {
+        background: transparent;
+      }
+
+      .btn--sm {
+        min-height: 36px;
+        padding: 7px 12px;
+        font-size: 11.5px;
+        border-radius: 8px;
+      }
+
+      .btn--danger-ghost {
+        border-color: transparent;
+        background: transparent;
+        color: var(--danger);
+      }
+
+      .btn--danger-ghost:hover {
+        border-color: var(--danger-line);
+        background: var(--danger-bg);
+        color: var(--danger);
+      }
+
+      .btn--generate {
+        width: 100%;
+        min-height: 54px;
+        font-size: 14px;
+        letter-spacing: 0.01em;
+        position: relative;
+      }
+
+      .btn--generate .btn-arrow {
+        margin-left: auto;
+        opacity: 0.75;
+      }
+
+      .btn--generate[data-loading='true'] .btn-icon,
+      .btn--generate[data-loading='true'] .btn-arrow {
+        display: none;
+      }
+
+      .btn--generate[data-loading='true'] {
+        justify-content: center;
+      }
+
+      .spinner {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        flex: 0 0 auto;
+        border: 2px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: girar 0.8s linear infinite;
+      }
+
+      .btn .spinner {
+        display: none;
+      }
+      .btn[data-loading='true'] .spinner {
+        display: inline-block;
+      }
+      .btn[data-loading='true'] .btn-icon {
+        display: none;
+      }
+
+      @keyframes girar {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .study-disclaimer {
+        display: flex;
+        align-items: flex-start;
+        gap: 7px;
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: 10.5px;
+        line-height: 1.55;
+      }
+
+      .study-disclaimer .icon {
+        width: 14px;
+        height: 14px;
+        margin-top: 1px;
+        color: var(--accent-strong);
+      }
+
+      .key-note {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 14px;
+        padding-top: 13px;
+        border-top: 1px dashed var(--line-soft);
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.5;
+      }
+
+      .key-note .key-dot {
+        width: 6px;
+        height: 6px;
+      }
+
+      .key-note .link-btn {
+        margin-left: 1px;
+        font-size: 10px;
+      }
+
+      /* =========================================================================
+         6. Coluna de saída
+         ========================================================================= */
+      .output {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        scroll-margin-top: 92px;
+      }
+
+      .output-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 13px;
+        padding: 2px 2px 0;
+      }
+
+      .output-head .eyebrow {
+        font-size: 9.5px;
+      }
+
+      .output-head h2 {
+        margin: 5px 0 0;
+        color: var(--ink-strong);
+        font-family: var(--font-display);
+        font-size: clamp(1.75rem, 3vw, 2.15rem);
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        line-height: 1.1;
+      }
+
+      .output-head h2:focus {
+        outline: none;
+      }
+
+      .output-aside {
+        display: none;
+        margin: 0 0 4px;
+        color: var(--muted);
+        font-size: 10px;
+        letter-spacing: 0.05em;
+      }
+
+      .error-banner {
+        display: flex;
+        align-items: flex-start;
+        gap: 11px;
+        margin-bottom: 14px;
+        padding: 14px 15px;
+        border: 1px solid var(--danger-line);
+        border-radius: var(--radius-md);
+        background: var(--danger-bg);
+        color: var(--danger-ink);
+      }
+
+      .error-banner > .icon {
+        width: 19px;
+        height: 19px;
+        margin-top: 1px;
+        color: var(--danger);
+      }
+
+      .error-content {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .error-content h3 {
+        margin: 0 0 3px;
+        color: var(--danger-ink);
+        font-size: 12.5px;
+        font-weight: 700;
+      }
+
+      .error-content p {
+        margin: 0;
+        font-size: 11.5px;
+        line-height: 1.6;
+        color: var(--danger-ink);
+      }
+
+      .error-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        margin-top: 9px;
+      }
+
+      .error-actions .btn {
+        min-height: 32px;
+        padding: 5px 10px;
+        border-color: var(--danger-line);
+        background: transparent;
+        color: var(--danger-ink);
+        font-size: 10.5px;
+      }
+
+      .error-actions .link-btn {
+        color: var(--danger-ink);
+        font-size: 10.5px;
+      }
+
+      .error-close {
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        margin: -4px -4px 0 0;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+        color: var(--danger-ink);
+      }
+
+      .error-close:hover {
+        background: color-mix(in srgb, var(--danger) 10%, transparent);
+      }
+      .error-close .icon {
+        width: 15px;
+        height: 15px;
+      }
+
+      .empty-state {
+        position: relative;
+        display: grid;
+        flex: 1;
+        place-items: center;
+        min-height: 430px;
+        padding: clamp(28px, 6vw, 54px) clamp(18px, 4vw, 44px);
+        overflow: hidden;
+        border: 1px dashed var(--line);
+        border-radius: var(--radius-xl);
+        background: linear-gradient(160deg, var(--paper) 0%, var(--paper-soft) 100%);
+        text-align: center;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .empty-state::before {
+        content: '';
+        position: absolute;
+        top: -120px;
+        left: 50%;
+        width: 430px;
+        height: 320px;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        background: var(--glow-gold);
+        filter: blur(25px);
+        pointer-events: none;
+      }
+
+      .empty-inner {
+        position: relative;
+        max-width: 400px;
+      }
+
+      .empty-art {
+        width: 148px;
+        max-width: 58%;
+        margin: 0 auto 18px;
+        color: var(--accent);
+      }
+
+      .empty-kicker {
+        margin: 0 0 8px;
+        color: var(--accent-strong);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .empty-state h3 {
+        margin: 0 0 9px;
+        color: var(--ink-strong);
+        font-family: var(--font-display);
+        font-size: clamp(1.65rem, 3vw, 2rem);
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        line-height: 1.1;
+      }
+
+      .empty-state p {
+        margin: 0 auto;
+        max-width: 330px;
+        color: var(--muted);
+        font-family: var(--font-serif);
+        font-size: 0.94rem;
+        line-height: 1.7;
+      }
+
+      .empty-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .empty-note {
+        margin-top: 13px !important;
+        color: var(--muted-soft) !important;
+        font-family: var(--font-ui) !important;
+        font-size: 9.5px !important;
+        line-height: 1.5 !important;
+      }
+
+      .empty-steps {
+        display: grid;
+        gap: 7px;
+        max-width: 360px;
+        margin: 20px auto 0;
+        padding: 0;
+        list-style: none;
+        text-align: left;
+      }
+
+      .empty-steps li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 8px 10px;
+        border: 1px solid var(--line-soft);
+        border-radius: 8px;
+        background: color-mix(in srgb, var(--paper) 55%, transparent);
+      }
+
+      .empty-steps li > span {
+        flex: 0 0 auto;
+        padding-top: 1px;
+        color: var(--accent-strong);
+        font-family: var(--font-mono);
+        font-size: 8.5px;
+        letter-spacing: 0.06em;
+      }
+
+      .empty-steps p {
+        margin: 0;
+        max-width: none;
+        color: var(--muted);
+        font-family: var(--font-ui);
+        font-size: 10.5px;
+        line-height: 1.5;
+        text-align: left;
+      }
+
+      .empty-steps strong {
+        display: block;
+        margin-bottom: 1px;
+        color: var(--ink);
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .empty-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        margin-top: 22px;
+        color: var(--muted-soft);
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .empty-divider::before,
+      .empty-divider::after {
+        content: '';
+        width: 24px;
+        height: 1px;
+        background: var(--line);
+      }
+
+      .loading-state {
+        padding: clamp(20px, 4vw, 28px);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-xl);
+        background: var(--paper);
+        box-shadow: var(--shadow-card);
+      }
+
+      .loading-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .loading-head .spinner {
+        width: 22px;
+        height: 22px;
+        color: var(--accent-strong);
+        border-width: 2px;
+      }
+
+      .loading-head strong {
+        display: block;
+        color: var(--ink-strong);
+        font-family: var(--font-serif);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .loading-head span {
+        display: block;
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 10.5px;
+      }
+
+      .loading-head .loading-hint {
+        color: var(--muted-soft);
+        font-size: 9.5px;
+      }
+
+      .skeleton {
+        border-radius: 7px;
+        background: linear-gradient(
+          90deg,
+          var(--sand-soft) 20%,
+          var(--line-soft) 40%,
+          var(--sand-soft) 60%
+        );
+        background-size: 220% 100%;
+        animation: brilhar 1.6s ease-in-out infinite;
+      }
+
+      .skeleton + .skeleton {
+        margin-top: 9px;
+      }
+      .skeleton--title {
+        width: 62%;
+        height: 29px;
+      }
+      .skeleton--line {
+        width: 100%;
+        height: 10px;
+      }
+      .skeleton--short {
+        width: 74%;
+      }
+      .skeleton-card {
+        padding: 18px;
+        margin-top: 13px;
+        border: 1px solid var(--line-soft);
+        border-radius: var(--radius-md);
+        background: var(--paper-soft);
+      }
+
+      @keyframes brilhar {
+        0% {
+          background-position: 120% 0;
+        }
+        100% {
+          background-position: -120% 0;
+        }
+      }
+
+      /* =========================================================================
+         7. Barra de ações e estágio da mensagem
+         ========================================================================= */
+      .sermon-stage {
+        min-width: 0;
+      }
+
+      .sermon-toolbar {
+        position: sticky;
+        top: 82px;
+        z-index: 35;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 13px;
+        padding: 9px 10px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--header-bg);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .stats {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 5px 9px;
+        min-width: 0;
+        padding: 2px 4px;
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.4;
+      }
+
+      .stat-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap;
+      }
+
+      .stat-pill .icon {
+        width: 13px;
+        height: 13px;
+        color: var(--accent-strong);
+      }
+      .stat-pill strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .stat-sep {
+        width: 1px;
+        height: 11px;
+        background: var(--line);
+      }
+
+      .target-progress {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 4px 2px;
+      }
+
+      .target-progress__bar {
+        flex: 1;
+        height: 4px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: var(--sand-soft);
+      }
+
+      .target-progress__bar span {
+        display: block;
+        width: 0;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--accent);
+        transition: width 0.25s ease;
+      }
+
+      .target-progress__bar[data-state='over'] span {
+        background: var(--success);
+      }
+
+      .target-progress__label {
+        flex: 0 0 auto;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 0.03em;
+        line-height: 1.4;
+        white-space: nowrap;
+      }
+
+      .toolbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        overflow-x: auto;
+        padding: 1px 0 2px;
+        scrollbar-width: none;
+      }
+
+      .toolbar-actions::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tool-divider {
+        flex: 0 0 auto;
+        width: 1px;
+        height: 18px;
+        margin: 0 3px;
+        background: var(--line);
+      }
+
+      .tool-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        flex: 0 0 auto;
+        min-height: 34px;
+        padding: 7px 9px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--muted);
+        font-size: 10.5px;
+        font-weight: 600;
+        line-height: 1.2;
+        white-space: nowrap;
+        transition:
+          background 0.18s ease,
+          color 0.18s ease,
+          border-color 0.18s ease;
+      }
+
+      .jump-select {
+        flex: 0 0 auto;
+        min-height: 34px;
+        max-width: 126px;
+        padding: 6px 8px;
+        border: 1px solid var(--line-soft);
+        border-radius: 8px;
+        background: var(--paper);
+        color: var(--muted);
+        font-size: 10.5px;
+        font-weight: 600;
+        line-height: 1.2;
+        cursor: pointer;
+      }
+
+      .jump-select:hover {
+        border-color: var(--line);
+        color: var(--ink);
+      }
+
+      .jump-select:focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 2px;
+      }
+
+      .tool-btn:hover {
+        border-color: var(--line-soft);
+        background: var(--paper-soft);
+        color: var(--ink);
+      }
+
+      .tool-btn .icon {
+        width: 14px;
+        height: 14px;
+      }
+      .tool-btn--accent {
+        color: var(--accent-strong);
+      }
+      .tool-btn--save {
+        color: var(--ink);
+      }
+
+      .tool-btn--pulpit {
+        margin-left: 2px;
+        border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+      }
+
+      .tool-btn--pulpit:hover {
+        border-color: var(--accent);
+        background: var(--sand);
+        color: var(--ink-strong);
+      }
+
+      .paper-wrap {
+        position: relative;
+      }
+
+      .sermon-paper {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(22px, 4.5vw, 54px);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-xl);
+        background: var(--paper);
+        box-shadow: var(--shadow-deep);
+        animation: entrarPapel 0.5s ease both;
+      }
+
+      .sermon-paper::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 12%;
+        right: 12%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        opacity: 0.68;
+      }
+
+      @keyframes entrarPapel {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .paper-wrap.is-busy .sermon-paper {
+        opacity: 0.28;
+        filter: blur(1px);
+        pointer-events: none;
+      }
+
+      .busy-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 24px;
+        border-radius: var(--radius-xl);
+        text-align: center;
+      }
+
+      .busy-overlay .spinner {
+        width: 26px;
+        height: 26px;
+        color: var(--accent-strong);
+        border-width: 2px;
+      }
+
+      .busy-overlay strong {
+        color: var(--ink-strong);
+        font-family: var(--font-serif);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .busy-overlay span {
+        max-width: 260px;
+        color: var(--muted);
+        font-size: 10.5px;
+        line-height: 1.5;
+      }
+
+      .load-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 20px;
+        border-radius: inherit;
+        background: color-mix(in srgb, var(--paper-soft) 72%, transparent);
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        text-align: center;
+      }
+
+      .load-overlay .spinner {
+        width: 22px;
+        height: 22px;
+        color: var(--accent-strong);
+        border-width: 2px;
+      }
+
+      .load-overlay span {
+        max-width: 280px;
+        color: var(--ink);
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 1.5;
+      }
+
+      .is-loading {
+        position: relative;
+      }
+      .is-loading > *:not(.load-overlay) {
+        opacity: 0.22;
+        pointer-events: none;
+      }
+      .is-loading .load-overlay {
+        opacity: 1;
+      }
+
+      /* =========================================================================
+         8. Cabeçalho da mensagem e cartões editáveis
+         ========================================================================= */
+      .sermon-hero {
+        position: relative;
+        padding-bottom: clamp(24px, 3.5vw, 34px);
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      .sermon-kicker-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+      }
+
+      .sermon-kicker {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin: 0;
+        color: var(--accent-strong);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .sermon-kicker::before {
+        content: '';
+        width: 20px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      .demo-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 3px 7px;
+        border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .sermon-title {
+        margin: 16px 0 0;
+        color: var(--ink-strong);
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4.6vw, 3.35rem);
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        line-height: 1;
+        text-wrap: balance;
+      }
+
+      .verse-block {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-top: 22px;
+        padding-left: clamp(12px, 2vw, 18px);
+        border-left: 2px solid var(--accent);
+      }
+
+      .verse-mark {
+        flex: 0 0 auto;
+        margin-top: -6px;
+        color: var(--accent);
+        font-family: var(--font-display);
+        font-size: 38px;
+        line-height: 1;
+        opacity: 0.8;
+      }
+
+      .verse-content {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .verse-ref {
+        margin: 0;
+        color: var(--accent-strong);
+        font-family: var(--font-ui);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+
+      .verse-text {
+        margin: 5px 0 0;
+        color: var(--ink);
+        font-family: var(--font-serif);
+        font-size: clamp(1rem, 1.6vw, 1.12rem);
+        font-style: italic;
+        line-height: 1.65;
+      }
+
+      .sermon-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 18px;
+      }
+
+      .meta-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 8px;
+        border: 1px solid var(--line-soft);
+        border-radius: 999px;
+        background: var(--paper-soft);
+        color: var(--muted);
+        font-size: 9px;
+        font-weight: 500;
+        letter-spacing: 0.015em;
+        line-height: 1.4;
+      }
+
+      .sermon-hero,
+      .section-card {
+        scroll-margin-top: 80px;
+      }
+
+      .section-card {
+        position: relative;
+        margin-top: 16px;
+        padding: clamp(17px, 2.6vw, 24px);
+        border: 1px solid var(--line-soft);
+        border-radius: var(--radius-md);
+        background: var(--paper-soft);
+        transition:
+          border-color 0.18s ease,
+          background 0.18s ease;
+      }
+
+      .section-card:hover {
+        border-color: var(--line);
+      }
+
+      .point-card {
+        border-left: 3px solid color-mix(in srgb, var(--accent) 55%, var(--line));
+        background: linear-gradient(135deg, var(--paper-soft), var(--paper));
+      }
+
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        gap: 11px;
+        min-width: 0;
+      }
+
+      .section-number {
+        flex: 0 0 auto;
+        min-width: 25px;
+        color: var(--accent-strong);
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: 0.02em;
+      }
+
+      .section-title {
+        margin: 0;
+        color: var(--ink-strong);
+        font-family: var(--font-serif);
+        font-size: 1.04rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        line-height: 1.35;
+        text-wrap: balance;
+      }
+
+      .point-card .section-head {
+        align-items: flex-start;
+      }
+
+      .point-card .section-number {
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+        border: 1px solid color-mix(in srgb, var(--accent) 50%, var(--line));
+        border-radius: 50%;
+        font-size: 0.94rem;
+      }
+
+      .point-heading-wrap {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .point-kicker {
+        display: block;
+        margin-bottom: 2px;
+        color: var(--muted);
+        font-family: var(--font-ui);
+        font-size: 8.5px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .point-title {
+        margin: 0;
+        color: var(--ink-strong);
+        font-family: var(--font-serif);
+        font-size: clamp(1.07rem, 2vw, 1.28rem);
+        font-weight: 600;
+        letter-spacing: -0.005em;
+        line-height: 1.4;
+      }
+
+      [contenteditable].editable {
+        margin-left: -6px;
+        margin-right: -6px;
+        padding: 4px 6px;
+        border-radius: 5px;
+        outline: none;
+        cursor: text;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        transition:
+          background 0.16s ease,
+          outline-color 0.16s ease;
+      }
+
+      [contenteditable].editable:hover {
+        background: var(--edit-hover);
+      }
+
+      [contenteditable].editable:focus {
+        background: var(--field);
+        outline: 2px solid var(--focus);
+        outline-offset: 1px;
+      }
+
+      [contenteditable][data-placeholder]:empty::before {
+        content: attr(data-placeholder);
+        color: var(--muted-soft);
+        font-style: italic;
+        font-weight: 400;
+        pointer-events: none;
+      }
+
+      .sermon-title.editable {
+        display: block;
+        margin-left: -8px;
+        margin-right: -8px;
+        padding: 4px 8px;
+      }
+
+      .section-body {
+        margin: 11px 0 0;
+        color: var(--ink);
+        font-family: var(--font-serif);
+        font-size: 0.99rem;
+        line-height: 1.78;
+      }
+
+      .point-parts {
+        display: grid;
+        gap: 16px;
+        margin-top: 14px;
+      }
+
+      .part {
+        min-width: 0;
+        padding-left: 12px;
+        border-left: 2px solid var(--line);
+      }
+
+      .part--exegese {
+        border-color: color-mix(in srgb, var(--primary) 35%, var(--line));
+      }
+      .part--ilustracao {
+        border-color: color-mix(in srgb, var(--accent) 62%, var(--line));
+      }
+      .part--aplicacao {
+        border-color: color-mix(in srgb, var(--success) 55%, var(--line));
+      }
+
+      .part-label {
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 0;
+        color: var(--ink);
+        font-family: var(--font-ui);
+        font-size: 8.5px;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .part-hint {
+        color: var(--muted-soft);
+        font-size: 8px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        text-transform: none;
+      }
+
+      .part .editable {
+        margin-top: 5px;
+        margin-bottom: 0;
+        color: var(--ink);
+        font-family: var(--font-serif);
+        font-size: 0.96rem;
+        line-height: 1.75;
+      }
+
+      .card-tools {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 14px;
+        padding-top: 11px;
+        border-top: 1px dashed var(--line-soft);
+      }
+
+      .mini-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        min-height: 29px;
+        padding: 4px 7px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        background: transparent;
+        color: var(--muted);
+        font-size: 9.5px;
+        font-weight: 600;
+        line-height: 1.2;
+        transition:
+          background 0.16s ease,
+          color 0.16s ease,
+          border-color 0.16s ease;
+      }
+
+      .mini-btn:hover {
+        border-color: var(--line);
+        background: var(--paper);
+        color: var(--ink);
+      }
+
+      .mini-btn .icon {
+        width: 12px;
+        height: 12px;
+      }
+      .mini-btn--accent {
+        color: var(--accent-strong);
+      }
+
+      .section-helper {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.6;
+      }
+
+      .questions-list {
+        display: grid;
+        gap: 7px;
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .question-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        min-width: 0;
+      }
+
+      .question-number {
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        width: 21px;
+        height: 21px;
+        margin-top: 4px;
+        border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+        border-radius: 50%;
+        color: var(--accent-strong);
+        font-size: 9px;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .question-item .editable {
+        flex: 1;
+        min-width: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding-top: 3px;
+        color: var(--ink);
+        font-family: var(--font-serif);
+        font-size: 0.96rem;
+        line-height: 1.65;
+      }
+
+      .remove-question {
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        margin-top: 1px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+        color: var(--muted-soft);
+        opacity: 0.75;
+      }
+
+      .remove-question:hover {
+        background: var(--danger-bg);
+        color: var(--danger);
+        opacity: 1;
+      }
+      .remove-question .icon {
+        width: 13px;
+        height: 13px;
+      }
+
+      .add-question {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 9px;
+        padding: 3px 0;
+        border: 0;
+        background: transparent;
+        color: var(--accent-strong);
+        font-size: 10px;
+        font-weight: 600;
+      }
+
+      .add-question .icon {
+        width: 13px;
+        height: 13px;
+      }
+      .add-question:hover {
+        color: var(--ink);
+      }
+
+      .sermon-footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px 16px;
+        margin-top: clamp(22px, 3vw, 30px);
+        padding-top: 16px;
+        border-top: 1px solid var(--line-soft);
+        color: var(--muted-soft);
+        font-size: 9px;
+        line-height: 1.6;
+      }
+
+      .sermon-footer .editing-hint {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .sermon-footer .icon {
+        width: 12px;
+        height: 12px;
+      }
+
+      .paper-disclaimer {
+        display: flex;
+        align-items: flex-start;
+        gap: 7px;
+        margin: 14px 0 0;
+        padding: 11px 0 0;
+        border-top: 1px dashed var(--line-soft);
+        color: var(--muted);
+        font-size: 9.5px;
+        line-height: 1.55;
+      }
+
+      .paper-disclaimer .icon {
+        width: 13px;
+        height: 13px;
+        margin-top: 1px;
+        color: var(--accent-strong);
+      }
+
+      .print-only {
+        display: none;
+      }
+
+      /* =========================================================================
+         9. Diálogos, informações sobre a IA e biblioteca
+         ========================================================================= */
+      dialog {
+        width: min(540px, calc(100vw - 28px));
+        max-height: min(86dvh, 780px);
+        margin: auto;
+        padding: 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: var(--paper);
+        color: var(--ink);
+        box-shadow: 0 32px 100px rgba(4, 15, 22, 0.36);
+      }
+
+      .new-dialog {
+        width: min(500px, calc(100vw - 28px));
+      }
+
+      .menu-dialog {
+        width: min(440px, calc(100vw - 28px));
+      }
+
+      .menu-dialog .dialog-body {
+        padding-top: 10px;
+      }
+
+      .menu-nav {
+        display: grid;
+        gap: 2px;
+        margin-bottom: 2px;
+      }
+
+      .menu-nav__link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        min-height: 44px;
+        padding: 9px 10px;
+        border-radius: 8px;
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        transition:
+          background 0.18s ease,
+          color 0.18s ease;
+      }
+
+      .menu-nav__link:hover,
+      .menu-nav__link[aria-current='page'] {
+        background: var(--sand-soft);
+        color: var(--ink-strong);
+      }
+
+      .menu-nav__link .icon {
+        width: 15px;
+        height: 15px;
+        color: var(--muted-soft);
+      }
+
+      .menu-divider {
+        margin: 15px 0 8px;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 0.12em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .menu-actions {
+        display: grid;
+        gap: 3px;
+      }
+
+      .menu-action {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 44px;
+        padding: 8px 10px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--ink);
+        font-size: 12.5px;
+        font-weight: 600;
+        text-align: left;
+        transition:
+          background 0.18s ease,
+          border-color 0.18s ease;
+      }
+
+      .menu-action:hover {
+        border-color: var(--line-soft);
+        background: var(--paper-soft);
+      }
+
+      .menu-action .icon {
+        width: 16px;
+        height: 16px;
+        flex: 0 0 auto;
+        color: var(--accent-strong);
+      }
+
+      .menu-note {
+        margin: 15px 0 0;
+        padding-top: 13px;
+        border-top: 1px solid var(--line-soft);
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.6;
+      }
+
+      dialog::backdrop {
+        background: rgba(4, 14, 21, 0.6);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+      }
+
+      dialog[open] {
+        animation: abrirDialogo 0.22s ease both;
+      }
+
+      @keyframes abrirDialogo {
+        from {
+          opacity: 0;
+          transform: translateY(8px) scale(0.985);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .dialog-shell {
+        display: flex;
+        flex-direction: column;
+        max-height: inherit;
+      }
+
+      .dialog-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 22px 23px 0;
+      }
+
+      .dialog-head .eyebrow {
+        font-size: 8.5px;
+      }
+
+      .dialog-head h2 {
+        margin: 5px 0 0;
+        color: var(--ink-strong);
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+      }
+
+      .dialog-close {
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        width: 36px;
+        height: 36px;
+        margin: -4px -4px 0 0;
+        padding: 0;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        background: transparent;
+        color: var(--muted);
+      }
+
+      .dialog-close:hover {
+        border-color: var(--line);
+        background: var(--sand-soft);
+        color: var(--ink);
+      }
+      .dialog-close .icon {
+        width: 17px;
+        height: 17px;
+      }
+
+      .dialog-body {
+        overflow-y: auto;
+        padding: 15px 23px 23px;
+        scrollbar-width: thin;
+        scrollbar-color: var(--line) transparent;
+      }
+
+      .dialog-intro {
+        margin: 0 0 16px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.65;
+      }
+
+      .info-note {
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
+        padding: 11px 12px;
+        border: 1px solid var(--line-soft);
+        border-radius: var(--radius-sm);
+        background: var(--paper-soft);
+        color: var(--muted);
+        font-size: 10.5px;
+        line-height: 1.6;
+      }
+
+      .info-note .icon {
+        width: 15px;
+        height: 15px;
+        margin-top: 1px;
+        color: var(--accent-strong);
+      }
+
+      .notice-inline {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        margin: 0 0 14px;
+        padding: 10px 11px;
+        border-left: 2px solid var(--accent);
+        border-radius: 0 6px 6px 0;
+        background: var(--accent-soft);
+        color: var(--ink);
+        font-size: 10.5px;
+        line-height: 1.6;
+      }
+
+      .key-row {
+        display: flex;
+        align-items: stretch;
+        gap: 7px;
+      }
+
+      .key-row .input {
+        flex: 1;
+        min-width: 0;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+        font-size: 12px;
+        letter-spacing: 0.02em;
+      }
+
+      .key-row .icon-btn {
+        flex: 0 0 auto;
+        width: 45px;
+        min-height: 45px;
+        padding: 0;
+        border-color: var(--line);
+        border-radius: var(--radius-sm);
+        background: var(--field);
+      }
+
+      .key-row .icon-btn:hover {
+        background: var(--sand-soft);
+      }
+
+      .model-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 15px;
+        padding: 10px 0;
+        border-top: 1px solid var(--line-soft);
+        border-bottom: 1px solid var(--line-soft);
+        color: var(--muted);
+        font-size: 10.5px;
+      }
+
+      .model-chip {
+        padding: 4px 7px;
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        background: var(--field);
+        color: var(--ink);
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+        font-size: 9.5px;
+        white-space: nowrap;
+      }
+
+      .key-status {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-top: 11px;
+        color: var(--muted);
+        font-size: 10.5px;
+        line-height: 1.5;
+      }
+
+      .status-dot {
+        width: 6px;
+        height: 6px;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        background: var(--muted-soft);
+      }
+
+      .status-dot.is-on {
+        background: var(--success);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 14%, transparent);
+      }
+
+      .dialog-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 17px;
+        padding-top: 15px;
+        border-top: 1px solid var(--line-soft);
+      }
+
+      .dialog-actions .link-btn {
+        margin-right: auto;
+      }
+
+      .shortcut-list {
+        display: grid;
+        gap: 7px;
+        margin: 14px 0 0;
+        padding: 12px 13px;
+        border: 1px solid var(--line-soft);
+        border-radius: var(--radius-sm);
+        background: var(--paper-soft);
+      }
+
+      .shortcut-list p {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 10.5px;
+        line-height: 1.5;
+      }
+
+      .shortcut-list kbd {
+        display: inline-block;
+        min-width: 22px;
+        padding: 2px 5px;
+        border: 1px solid var(--line);
+        border-bottom-width: 2px;
+        border-radius: 5px;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--font-mono);
+        font-size: 9px;
+        line-height: 1.4;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .demo-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin: 14px 0 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--accent-strong);
+        font-size: 10.5px;
+        font-weight: 600;
+        text-align: left;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .demo-link:hover {
+        color: var(--ink);
+      }
+      .demo-link .icon {
+        width: 13px;
+        height: 13px;
+      }
+
+      .external-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 10.5px;
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .external-link .icon {
+        width: 12px;
+        height: 12px;
+      }
+
+      /* Biblioteca */
+      .library-dialog {
+        width: min(760px, calc(100vw - 28px));
+      }
+
+      .library-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .library-controls .search-field {
+        flex: 1;
+        min-width: 0;
+        margin-bottom: 0;
+      }
+
+      .library-tools {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex: 0 0 auto;
+      }
+
+      .library-tools .btn {
+        white-space: nowrap;
+      }
+
+      .library-tools .btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.45;
+      }
+
+      .search-field {
+        position: relative;
+        margin-bottom: 11px;
+      }
+
+      .search-field .icon {
+        position: absolute;
+        top: 50%;
+        left: 13px;
+        width: 15px;
+        height: 15px;
+        transform: translateY(-50%);
+        color: var(--muted-soft);
+        pointer-events: none;
+      }
+
+      .search-field .input {
+        padding-left: 38px;
+      }
+
+      .library-note {
+        margin: 0 0 14px;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.55;
+      }
+
+      .library-list {
+        display: grid;
+        gap: 7px;
+      }
+
+      .library-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 13px;
+        border: 1px solid var(--line-soft);
+        border-radius: var(--radius-sm);
+        background: var(--paper-soft);
+      }
+
+      .library-info {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .library-title-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+
+      .library-title-row h3 {
+        margin: 0;
+        color: var(--ink-strong);
+        font-family: var(--font-serif);
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+      }
+
+      .library-meta {
+        margin: 3px 0 0;
+        color: var(--muted);
+        font-size: 9.5px;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+      }
+
+      .library-actions {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        flex: 0 0 auto;
+      }
+
+      .library-actions .icon-btn {
+        width: 34px;
+        min-height: 34px;
+        padding: 0;
+        color: var(--muted);
+      }
+
+      .library-actions .icon-btn:hover {
+        color: var(--danger);
+      }
+
+      .library-empty {
+        padding: 34px 18px;
+        border: 1px dashed var(--line);
+        border-radius: var(--radius-md);
+        text-align: center;
+      }
+
+      .library-empty .icon {
+        width: 28px;
+        height: 28px;
+        margin: 0 auto 10px;
+        color: var(--accent);
+      }
+
+      .library-empty strong {
+        display: block;
+        color: var(--ink-strong);
+        font-family: var(--font-serif);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .library-empty p {
+        margin: 4px auto 0;
+        max-width: 280px;
+        color: var(--muted);
+        font-size: 10.5px;
+        line-height: 1.6;
+      }
+
+      /* =========================================================================
+         10. Modo púlpito
+         ========================================================================= */
+      .pulpit-dialog {
+        width: 100vw;
+        max-width: 100vw;
+        height: 100dvh;
+        max-height: 100dvh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+        border-radius: 0;
+        background: var(--pulpit-bg);
+        color: var(--ink);
+        box-shadow: none;
+      }
+
+      .pulpit-dialog[open] {
+        animation: nenhuma 0s;
+      }
+
+      @keyframes nenhuma {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .pulpit-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 80;
+        width: 0%;
+        height: 3px;
+        background: var(--accent);
+        transition: width 0.08s linear;
+      }
+
+      .pulpit-topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        min-height: 64px;
+        padding: 0 clamp(13px, 4vw, 34px);
+        border-bottom: 1px solid var(--line);
+        background: var(--pulpit-topbar);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+      }
+
+      .pulpit-close {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 38px;
+        padding: 6px 9px;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        background: transparent;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pulpit-close:hover {
+        border-color: var(--line);
+        background: var(--paper-soft);
+        color: var(--ink);
+      }
+      .pulpit-close .icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      .pulpit-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--accent-strong);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .pulpit-brand .icon {
+        width: 16px;
+        height: 16px;
+      }
+      .pulpit-brand span {
+        display: none;
+      }
+
+      .pulpit-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .pulpit-time {
+        display: none;
+        color: var(--muted);
+        font-size: 9.5px;
+        white-space: nowrap;
+      }
+
+      .font-controls {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        background: var(--paper-soft);
+        overflow: hidden;
+      }
+
+      .font-controls button {
+        display: grid;
+        place-items: center;
+        width: 35px;
+        height: 33px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .font-controls button:hover {
+        background: var(--sand);
+      }
+      .font-controls button:disabled {
+        opacity: 0.35;
+      }
+
+      .font-value {
+        min-width: 43px;
+        border-left: 1px solid var(--line);
+        border-right: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 9px;
+        font-weight: 600;
+        line-height: 33px;
+        text-align: center;
+      }
+
+      .pulpit-scroll {
+        height: calc(100dvh - 64px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-color: var(--line) transparent;
+      }
+
+      .pulpit-article {
+        width: min(100%, 810px);
+        margin: 0 auto;
+        padding: clamp(36px, 7vh, 74px) clamp(20px, 5vw, 42px) 120px;
+        color: var(--ink);
+        font-family: var(--font-serif);
+        font-size: var(--pulpit-font-size, 20px);
+        line-height: 1.78;
+        overflow-wrap: anywhere;
+      }
+
+      .pulpit-kicker {
+        margin: 0 0 14px;
+        color: var(--accent-strong);
+        font-family: var(--font-ui);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .pulpit-title {
+        margin: 0 0 22px;
+        color: var(--ink-strong);
+        font-family: var(--font-display);
+        font-size: 3em;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        line-height: 0.98;
+        text-wrap: balance;
+      }
+
+      .pulpit-verse {
+        margin: 0 0 34px;
+        padding-left: 17px;
+        border-left: 2px solid var(--accent);
+      }
+
+      .pulpit-verse .ref {
+        margin: 0 0 4px;
+        color: var(--accent-strong);
+        font-family: var(--font-ui);
+        font-size: 0.48em;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+
+      .pulpit-verse .text {
+        margin: 0;
+        color: var(--ink);
+        font-size: 1.02em;
+        font-style: italic;
+        line-height: 1.65;
+      }
+
+      .pulpit-verse .apenas-ref {
+        margin: 0;
+        color: var(--muted);
+        font-family: var(--font-ui);
+        font-size: 0.5em;
+        line-height: 1.6;
+      }
+
+      .pulpit-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin: 17px 0 0;
+      }
+
+      .pulpit-meta span {
+        padding: 4px 8px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--muted);
+        font-family: var(--font-ui);
+        font-size: 0.4em;
+        line-height: 1.4;
+      }
+
+      .pulpit-section {
+        margin-top: 35px;
+        padding-top: 25px;
+        border-top: 1px solid var(--line-soft);
+      }
+
+      .pulpit-section-label {
+        margin: 0;
+        color: var(--accent-strong);
+        font-family: var(--font-ui);
+        font-size: 0.46em;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .pulpit-section h2 {
+        margin: 4px 0 12px;
+        color: var(--ink-strong);
+        font-family: var(--font-display);
+        font-size: 1.75em;
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        line-height: 1.1;
+        text-wrap: balance;
+      }
+
+      .pulpit-section p {
+        margin: 0.6em 0;
+        white-space: pre-wrap;
+      }
+
+      .pulpit-part {
+        margin-top: 18px;
+      }
+
+      .pulpit-part-label {
+        margin: 0;
+        color: var(--muted);
+        font-family: var(--font-ui);
+        font-size: 0.44em;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .pulpit-part-label--ilustracao {
+        color: var(--accent-strong);
+      }
+      .pulpit-part-label--aplicacao {
+        color: var(--success);
+      }
+
+      .pulpit-part p {
+        margin-top: 4px;
+        color: var(--ink);
+        font-size: 0.97em;
+      }
+
+      .pulpit-questions {
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: pergunta;
+      }
+
+      .pulpit-questions li {
+        position: relative;
+        margin: 8px 0;
+        padding-left: 1.5em;
+        counter-increment: pergunta;
+      }
+
+      .pulpit-questions li::before {
+        content: counter(pergunta);
+        position: absolute;
+        top: 0.16em;
+        left: 0;
+        display: grid;
+        place-items: center;
+        width: 1.1em;
+        height: 1.1em;
+        border: 1px solid var(--accent);
+        border-radius: 50%;
+        color: var(--accent-strong);
+        font-family: var(--font-ui);
+        font-size: 0.5em;
+        font-weight: 700;
+      }
+
+      .pulpit-close-note {
+        margin-top: 48px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line-soft);
+        color: var(--muted);
+        font-family: var(--font-ui);
+        font-size: 0.43em;
+        line-height: 1.65;
+      }
+
+      /* =========================================================================
+         11. Rodapé, notificações e utilidades
+         ========================================================================= */
+      .site-footer {
+        width: min(100%, 1370px);
+        margin: 0 auto;
+        padding: 24px clamp(16px, 4vw, 42px) 38px;
+        border-top: 1px solid var(--line-soft);
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.65;
+      }
+
+      .footer-grid {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px 40px;
+      }
+
+      .footer-brand {
+        color: var(--ink-strong);
+        font-family: var(--font-display);
+        font-size: 19px;
+        font-weight: 600;
+        line-height: 1;
+      }
+
+      .footer-copy {
+        max-width: 520px;
+        margin: 6px 0 0;
+      }
+      .footer-disclaimer {
+        max-width: 340px;
+        margin: 0;
+      }
+
+      .toast-region {
+        position: fixed;
+        bottom: 18px;
+        left: 50%;
+        z-index: 300;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        width: min(470px, calc(100vw - 26px));
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+
+      .toast {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 11px 13px;
+        border: 1px solid var(--toast-line);
+        border-radius: 10px;
+        background: var(--toast-bg);
+        color: var(--toast-ink);
+        box-shadow: 0 16px 40px rgba(3, 12, 18, 0.25);
+        font-size: 11.5px;
+        line-height: 1.5;
+        pointer-events: auto;
+        animation: subirAviso 0.24s ease both;
+      }
+
+      .toast-message {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        min-width: 0;
+      }
+      .toast-message::before {
+        content: '✦';
+        flex: 0 0 auto;
+        color: var(--toast-action);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .toast-action {
+        flex: 0 0 auto;
+        padding: 3px 4px;
+        border: 0;
+        border-radius: 4px;
+        background: transparent;
+        color: var(--toast-action);
+        font-size: 10.5px;
+        font-weight: 700;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .toast-action:hover {
+        color: var(--toast-ink);
+      }
+
+      @keyframes subirAviso {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .toast.saindo {
+        animation: descerAviso 0.2s ease both;
+      }
+
+      @keyframes descerAviso {
+        to {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+      }
+
+      /* =========================================================================
+         12. Responsivo
+         ========================================================================= */
+      @media (min-width: 640px) {
+        .optional-label {
+          display: inline;
+        }
+        .toolbar-actions {
+          flex-wrap: wrap;
+          justify-content: flex-end;
+          overflow: visible;
+        }
+        .section-card {
+          scroll-margin-top: 130px;
+        }
+        .brand-sub {
+          letter-spacing: 0.17em;
+        }
+        .output-aside {
+          display: block;
+        }
+        .pulpit-brand span {
+          display: inline;
+        }
+        .pulpit-time {
+          display: inline;
+        }
+      }
+
+      @media (min-width: 780px) {
+        .sermon-toolbar {
+          gap: 6px;
+          padding: 8px 11px;
+        }
+        .section-card {
+          padding: 22px 24px;
+        }
+        .point-parts {
+          gap: 18px;
+        }
+        .empty-state {
+          min-height: 500px;
+        }
+      }
+
+      @media (min-width: 880px) {
+        .hero {
+          grid-template-columns: minmax(0, 1.55fr) minmax(210px, 0.45fr);
+          align-items: end;
+          gap: 38px;
+        }
+
+        .hero-aside {
+          display: flex;
+          justify-content: flex-end;
+          padding-bottom: 4px;
+        }
+      }
+
+      @media (min-width: 1080px) {
+        .header-nav {
+          display: flex;
+        }
+        .menu-btn {
+          display: none;
+        }
+      }
+
+      @media (min-width: 980px) {
+        .workspace {
+          grid-template-columns: minmax(320px, 350px) minmax(0, 1fr);
+          gap: 26px;
+        }
+        /* O painel só fica fixo quando cabe inteiro na tela; o JavaScript liga esta classe. */
+        .form-panel--sticky {
+          position: sticky;
+          top: 90px;
+        }
+      }
+
+      @media (min-width: 1240px) {
+        .workspace {
+          grid-template-columns: 388px minmax(0, 1fr);
+          gap: 32px;
+        }
+        .sermon-toolbar {
+          top: 86px;
+        }
+        .output-head {
+          margin-bottom: 15px;
+        }
+        .hero-lede {
+          font-size: 1.15rem;
+        }
+      }
+
+      @media (max-width: 639px) {
+        .header-theme {
+          display: none;
+        }
+        .library-controls {
+          align-items: stretch;
+          flex-direction: column;
+        }
+        .library-tools {
+          justify-content: flex-end;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .header-inner {
+          min-height: 64px;
+          padding-inline: 13px;
+        }
+        .brand-mark {
+          width: 34px;
+          height: 34px;
+        }
+        .brand-name {
+          font-size: 23px;
+        }
+        .brand-sub {
+          font-size: 8px;
+          letter-spacing: 0.1em;
+        }
+        .header-actions {
+          gap: 1px;
+        }
+        .icon-btn {
+          padding-inline: 8px;
+        }
+        .icon-only {
+          width: 39px;
+        }
+        .field-grid {
+          gap: 13px 9px;
+        }
+        .field-label {
+          font-size: 11.5px;
+        }
+        .input,
+        .select,
+        .textarea {
+          font-size: 13px;
+          padding-inline: 11px;
+        }
+        .duration-options {
+          gap: 5px;
+        }
+        .duration-btn {
+          font-size: 11.5px;
+        }
+        .sermon-paper {
+          padding: 20px 17px;
+        }
+        .section-card {
+          padding: 16px 14px;
+        }
+        .sermon-title {
+          font-size: 2rem;
+        }
+        .sermon-toolbar {
+          top: 74px;
+        }
+        .tool-btn {
+          font-size: 10px;
+          padding-inline: 8px;
+        }
+        .pulpit-close span {
+          display: none;
+        }
+        .pulpit-controls {
+          gap: 6px;
+        }
+        .font-controls button {
+          width: 31px;
+        }
+        .font-value {
+          min-width: 36px;
+        }
+        .dialog-head,
+        .dialog-body {
+          padding-inline: 18px;
+        }
+        .dialog-head {
+          padding-top: 18px;
+        }
+        .library-item {
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .header-inner {
+          gap: 6px;
+          padding-inline: 9px;
+        }
+        .brand {
+          gap: 8px;
+        }
+        .brand-mark {
+          width: 31px;
+          height: 31px;
+        }
+        .brand-name {
+          font-size: 21px;
+        }
+        .icon-btn {
+          padding-inline: 5px;
+        }
+        .icon-only {
+          width: 34px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      /* =========================================================================
+         13. Impressão / PDF
+         ========================================================================= */
+      @media print {
+        @page {
+          margin: 17mm 16mm 18mm;
+        }
+
+        :root,
+        html[data-theme='dark'] {
+          --bg: #fff;
+          --paper: #fff;
+          --paper-soft: #fff;
+          --field: #fff;
+          --ink: #1a1a1a;
+          --ink-strong: #0d0d0d;
+          --muted: #545454;
+          --muted-soft: #6d6d6d;
+          --line: #d9d9d9;
+          --line-soft: #e5e5e5;
+          --accent: #8a6427;
+          --accent-strong: #6f4f1c;
+          --success: #355743;
+          color-scheme: light;
+        }
+
+        html,
+        body {
+          background: #fff !important;
+        }
+
+        body {
+          font-size: 10.5pt;
+        }
+
+        .site-header,
+        .hero,
+        .form-panel,
+        .output-head,
+        .sermon-toolbar,
+        .empty-state,
+        .loading-state,
+        .error-banner,
+        .toast-region,
+        .site-footer,
+        .skip-link,
+        .busy-overlay,
+        .load-overlay,
+        .card-tools,
+        .add-question,
+        .remove-question,
+        .sermon-footer .editing-hint,
+        .output-aside {
+          display: none !important;
+        }
+
+        .workspace {
+          display: block;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        .output {
+          display: block;
+        }
+        .sermon-stage {
+          display: block !important;
+        }
+        .paper-wrap {
+          position: static;
+        }
+        .sermon-paper {
+          padding: 0;
+          border: 0;
+          border-radius: 0;
+          background: #fff;
+          box-shadow: none;
+          animation: none;
+        }
+
+        .sermon-paper::before {
+          display: none;
+        }
+        .section-card {
+          margin-top: 9mm;
+          padding: 4mm;
+          border: 1px solid #ddd;
+          border-radius: 3mm;
+          background: #fff;
+          break-inside: avoid;
+        }
+
+        .point-card {
+          border-left: 2px solid #8a6427;
+        }
+
+        [contenteditable] {
+          margin: 0;
+          padding: 0;
+          background: transparent !important;
+          outline: none !important;
+          opacity: 1 !important;
+        }
+
+        [contenteditable][data-placeholder]:empty::before {
+          content: none;
+        }
+
+        .sermon-kicker-row {
+          display: block;
+        }
+        .sermon-kicker {
+          font-size: 8pt;
+        }
+        .sermon-title {
+          font-size: 26pt;
+          margin-top: 3mm;
+        }
+        .verse-block {
+          margin-top: 4mm;
+          padding-left: 4mm;
+        }
+        .verse-mark {
+          font-size: 24pt;
+        }
+        .verse-ref {
+          font-size: 8pt;
+        }
+        .verse-text {
+          font-size: 11.5pt;
+        }
+        .sermon-meta {
+          margin-top: 3mm;
+        }
+        .meta-chip {
+          border-color: #ddd;
+          background: #fff;
+          color: #444;
+          font-size: 7.5pt;
+        }
+        .section-number {
+          font-size: 14pt;
+          color: #6f4f1c;
+        }
+        .section-title,
+        .point-title {
+          font-size: 12pt;
+          color: #111;
+        }
+        .point-kicker {
+          color: #666;
+          font-size: 7pt;
+        }
+        .section-body,
+        .part .editable,
+        .question-item .editable {
+          font-size: 10pt;
+          line-height: 1.5;
+        }
+        .part {
+          padding-left: 3mm;
+        }
+        .part-label {
+          font-size: 7pt;
+          color: #333;
+        }
+        .part-hint {
+          color: #666;
+          font-size: 6.5pt;
+        }
+        .card-tools,
+        .add-question,
+        .remove-question {
+          display: none !important;
+        }
+        .paper-disclaimer {
+          margin-top: 6mm;
+          color: #555;
+          font-size: 8pt;
+          border-color: #ddd;
+        }
+        .sermon-footer {
+          border-color: #ddd;
+          color: #666;
+          font-size: 8pt;
+          margin-top: 6mm;
+        }
+        .print-only {
+          display: block !important;
+        }
+        .print-signature {
+          margin-top: 7mm;
+          padding-top: 3mm;
+          border-top: 1px solid #ddd;
+          color: #777;
+          font-family: var(--font-ui);
+          font-size: 7.5pt;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+        .demo-badge {
+          border-color: #ccc;
+          background: #fff;
+          color: #555;
+        }
+        .question-number {
+          border-color: #aaa;
+          color: #555;
+        }
+        .card-tools,
+        .mini-btn {
+          display: none !important;
+        }
+        a {
+          color: #333;
+          text-decoration: none;
+        }
+      }
+    </style><script>(function(){const endpoint = "";
+const supabaseAnonKey = "";
+const dev = false;
+
+      window.__PREGACOES_CONFIG__ = {
+        endpoint,
+        anonKey: supabaseAnonKey,
+        dev,
+      };
+    })();</script><link rel="stylesheet" href="/Conectesse-com-Deus/_astro/Seo.CNz46-X2.css"><script type="module" src="/Conectesse-com-Deus/_astro/page.B3sWyS9n.js"></script></head> <body> <a class="skip-link" href="#conteudo">
+Pular para o conteúdo
+</a> <!-- Símbolos SVG reutilizáveis (ícones de interface) --> <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"> <symbol id="i-book" viewBox="0 0 24 24"> <path d="M12 6.2C9.7 4.6 6.8 4.2 4 4.7v13.1c2.8-.5 5.7-.1 8 1.5 2.3-1.6 5.2-2 8-1.5V4.7c-2.8-.5-5.7-.1-8 1.5Z"></path> <path d="M12 6.2v13.1M7.2 8.7c1.2 0 2.3.2 3.3.7M7.2 12c1.2 0 2.3.2 3.3.7M16.8 8.7c-1.2 0-2.3.2-3.3.7M16.8 12c-1.2 0-2.3.2-3.3.7"></path> </symbol> <symbol id="i-library" viewBox="0 0 24 24"> <path d="M4 19.5h16M5.5 19.5V8.2h3.7v11.3M10.1 19.5V4.5h3.8v15M14.8 19.5V10h3.7v9.5"></path> </symbol> <symbol id="i-settings" viewBox="0 0 24 24"> <path d="M4 7h8M16 7h4M4 12h3M11 12h9M4 17h9M17 17h3"></path> <circle cx="14" cy="7" r="2"></circle> <circle cx="9" cy="12" r="2"></circle> <circle cx="15" cy="17" r="2"></circle> </symbol> <symbol id="i-sun" viewBox="0 0 24 24"> <circle cx="12" cy="12" r="4"></circle> <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path> </symbol> <symbol id="i-moon" viewBox="0 0 24 24"> <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.6 8.6 0 1 0 10.7 10.7Z"></path> </symbol> <symbol id="i-sparkle" viewBox="0 0 24 24"> <path d="m12 3 1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3Z"></path> <path d="M19 16.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z"></path> </symbol> <symbol id="i-arrow-right" viewBox="0 0 24 24"> <path d="M4 12h16M14 6l6 6-6 6"></path> </symbol> <symbol id="i-bookmark" viewBox="0 0 24 24"> <path d="M6 4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21l-6-4-6 4V4.5Z"></path> </symbol> <symbol id="i-copy" viewBox="0 0 24 24"> <rect x="8" y="8" width="11" height="12" rx="2"></rect> <path d="M16 8V5a1.5 1.5 0 0 0-1.5-1.5h-9A1.5 1.5 0 0 0 4 5v12a1.5 1.5 0 0 0 1.5 1.5H8"></path> </symbol> <symbol id="i-print" viewBox="0 0 24 24"> <path d="M7 9V3h10v6M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"></path> <rect x="7" y="14" width="10" height="7" rx="1"></rect> <path d="M17 12h.01"></path> </symbol> <symbol id="i-pulpit" viewBox="0 0 24 24"> <path d="M4 21h16M6 21l2-8h8l2 8M9 13V9h6v4M12 9V6M10 3h4l1 3H9l1-3Z"></path> <path d="M12 17.5v1"></path> </symbol> <symbol id="i-close" viewBox="0 0 24 24"> <path d="M6 6l12 12M18 6 6 18"></path> </symbol> <symbol id="i-refresh" viewBox="0 0 24 24"> <path d="M20 7v5h-5M4 17v-5h5"></path> <path d="M18.5 9.5a7.5 7.5 0 0 0-12.1-2.9L4 9M5.5 14.5a7.5 7.5 0 0 0 12.1 2.9L20 15"></path> </symbol> <symbol id="i-wand" viewBox="0 0 24 24"> <path d="m4 20 11-11M13 7l4 4M19 3l.7 1.8 1.8.7-1.8.7L19 8l-.7-1.8-1.8-.7 1.8-.7L19 3ZM5 3l.5 1.3L7 5l-1.5.5L5 7l-.5-1.5L3 5l1.5-.7L5 3Z"></path> </symbol> <symbol id="i-simplify" viewBox="0 0 24 24"> <path d="M4 7h16M4 12h10M4 17h7M17 13l3 3-3 3M20 16h-6"></path> </symbol> <symbol id="i-plus" viewBox="0 0 24 24"> <path d="M12 5v14M5 12h14"></path> </symbol> <symbol id="i-trash" viewBox="0 0 24 24"> <path d="M4 7h16M9 7V4h6v3M6.5 7l.8 13h9.4l.8-13M10 11v5M14 11v5"></path> </symbol> <symbol id="i-search" viewBox="0 0 24 24"> <circle cx="11" cy="11" r="6.5"></circle> <path d="m16 16 4 4"></path> </symbol> <symbol id="i-check" viewBox="0 0 24 24"> <path d="m5 12.5 4.5 4.5L19 7"></path> </symbol> <symbol id="i-alert" viewBox="0 0 24 24"> <path d="M12 3 2.8 20h18.4L12 3Z"></path> <path d="M12 9v5M12 17.5h.01"></path> </symbol> <symbol id="i-eye" viewBox="0 0 24 24"> <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"></path> <circle cx="12" cy="12" r="3"></circle> </symbol> <symbol id="i-eye-off" viewBox="0 0 24 24"> <path d="M3 3l18 18M10.6 6.1A9.4 9.4 0 0 1 12 6c6 0 9.5 6 9.5 6a17 17 0 0 1-3 3.6M6.1 6.5A16 16 0 0 0 2.5 12S6 18 12 18a9 9 0 0 0 4.2-1M9.9 9.9a3 3 0 0 0 4.2 4.2"></path> </symbol> <symbol id="i-clock" viewBox="0 0 24 24"> <circle cx="12" cy="12" r="8.5"></circle> <path d="M12 7v5l3 2"></path> </symbol> <symbol id="i-info" viewBox="0 0 24 24"> <circle cx="12" cy="12" r="9"></circle> <path d="M12 11v5M12 8h.01"></path> </symbol> <symbol id="i-external" viewBox="0 0 24 24"> <path d="M14 4h6v6M20 4l-8 8M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"></path> </symbol> <symbol id="i-chevron-down" viewBox="0 0 24 24"> <path d="m6 9 6 6 6-6"></path> </symbol> <symbol id="i-undo" viewBox="0 0 24 24"> <path d="M9 7 4 12l5 5M4 12h9a6 6 0 1 1 0 12"></path> </symbol> <symbol id="i-edit" viewBox="0 0 24 24"> <path d="m14.5 5.5 4 4M4 20l4.5-1L20 7.5a2 2 0 0 0 0-2.8l-.7-.7a2 2 0 0 0-2.8 0L5 15.5 4 20Z"></path> </symbol> <symbol id="i-menu" viewBox="0 0 24 24"> <path d="M4 7h16M4 12h16M4 17h16"></path> </symbol> <symbol id="i-download" viewBox="0 0 24 24"> <path d="M12 4v11M12 15l4-4M12 15l-4-4M5 20h14"></path> </symbol> <symbol id="i-upload" viewBox="0 0 24 24"> <path d="M12 20V9M12 9l4 4M12 9 8 13M5 4h14"></path> </symbol> <symbol id="i-arrow-up" viewBox="0 0 24 24"> <path d="M12 19V5M12 5l6 6M12 5 6 11"></path> </symbol> </svg> <header class="site-header"> <div class="header-inner"> <a class="brand" href="/Conectesse-com-Deus/"> <svg class="brand-mark" viewBox="0 0 44 44" aria-hidden="true"> <circle cx="22" cy="22" r="21" fill="none" stroke="currentColor" stroke-width="1" opacity=".45"></circle> <path d="M22 13.5c-4.4-2.2-9-2.3-13-1.2v19.1c4-1.1 8.6-1 13 1.2 4.4-2.2 9-2.3 13-1.2V12.3c-4-1.1-8.6-1-13 1.2Zm0 0v19.1" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M13.5 17.5c2.8-.2 5.2.3 7 1.3M13.5 22c2.8-.2 5.2.3 7 1.3M30.5 17.5c-2.8-.2-5.2.3-7 1.3M30.5 22c-2.8-.2-5.2.3-7 1.3" fill="none" stroke="currentColor" stroke-width=".9" stroke-linecap="round" opacity=".65"></path> </svg> <span class="brand-text"> <span class="brand-name">Clareira</span> <span class="brand-sub">Construtor de Pregações</span> </span> </a> <nav class="header-nav" aria-label="Navegação do site"> <a class="header-nav__link" href="/Conectesse-com-Deus/formacao/"> Formação </a><a class="header-nav__link" href="/Conectesse-com-Deus/cursos/"> Cursos </a><a class="header-nav__link" href="/Conectesse-com-Deus/biblias/"> Bíblia </a><a class="header-nav__link" href="/Conectesse-com-Deus/videos/"> Vídeos </a><a class="header-nav__link" href="/Conectesse-com-Deus/biblioteca/"> Biblioteca </a><a class="header-nav__link" href="/Conectesse-com-Deus/pregacoes/" aria-current="page"> Pregações </a> </nav> <div class="header-actions"> <button class="icon-btn icon-only menu-btn" type="button" id="menuBtn" title="Abrir menu de navegação" aria-label="Abrir menu de navegação" aria-haspopup="dialog" aria-controls="menuDialog" aria-expanded="false"> <svg class="icon" aria-hidden="true"> <use href="#i-menu"></use> </svg> </button> <button class="icon-btn" type="button" id="newBtn" title="Começar um novo esboço" aria-label="Novo esboço"> <svg class="icon" aria-hidden="true"> <use href="#i-plus"></use> </svg> <span class="optional-label">Novo</span> </button> <button class="icon-btn" type="button" id="libraryBtn" aria-haspopup="dialog" aria-controls="libraryDialog" title="Abrir biblioteca de pregações"> <svg class="icon" aria-hidden="true"> <use href="#i-library"></use> </svg> <span class="optional-label">Biblioteca</span> <span class="count-badge" id="libraryCount" aria-hidden="true" hidden>
+0
+</span> </button> <button class="icon-btn" type="button" id="settingsBtn" aria-haspopup="dialog" aria-controls="settingsDialog" title="Como a IA funciona" aria-label="Sobre a IA — como funciona"> <span class="key-dot" id="keyDot" aria-hidden="true"></span> <svg class="icon" aria-hidden="true"> <use href="#i-info"></use> </svg> <span class="optional-label">Sobre a IA</span> </button> <button class="icon-btn icon-only header-theme" type="button" id="themeBtn" title="Ativar modo escuro" aria-label="Ativar modo escuro" aria-pressed="false"> <svg class="icon" aria-hidden="true"> <use href="#i-moon" id="themeIconUse"></use> </svg> </button> </div> </div> </header> <main id="conteudo"> <section class="hero" aria-labelledby="heroTitle"> <nav class="breadcrumb" aria-label="Trilha de navegação"> <a href="/Conectesse-com-Deus/">Início</a> <span aria-hidden="true">/</span> <a href="/Conectesse-com-Deus/formacao/">Formação</a> <span aria-hidden="true">/</span> <span aria-current="page">Construtor de pregações</span> </nav> <div class="hero-copy"> <p class="eyebrow"> <span class="eyebrow-line" aria-hidden="true"></span>Homilética assistida
+</p> <h1 id="heroTitle">
+Do texto ao púlpito,
+<br> <em>com tempo e cuidado.</em> </h1> <p class="hero-lede">
+Uma mesa de estudo para organizar a exegese, a ilustração e a aplicação — sem substituir
+            a sua voz, a sua revisão e a sua oração.
+</p> <ul class="hero-points" aria-label="O que a página oferece"> <li> <svg class="icon" aria-hidden="true"> <use href="#i-check"></use> </svg>
+Fidelidade ao texto
+</li> <li> <svg class="icon" aria-hidden="true"> <use href="#i-edit"></use> </svg>
+Cada trecho editável
+</li> <li> <svg class="icon" aria-hidden="true"> <use href="#i-pulpit"></use> </svg>
+Pronto para o púlpito
+</li> </ul> </div> <aside class="hero-aside" aria-label="Nota de preparação"> <div class="homily-note"> <p>
+“A preparação também é um ato pastoral: o texto merece tempo, e as pessoas, cuidado.”
+</p> <span class="note-caption">Nota de estudo</span> </div> </aside> </section> <div class="workspace"> <!-- Painel de estudo: deliberadamente sem <form>; as ações são ligadas via JavaScript. --><section class="form-panel" aria-labelledby="studyTitle"> <div class="panel-head"> <p class="eyebrow">01 · Preparar</p> <h2 id="studyTitle">Comece pelo texto</h2> <p class="panel-lede">
+Descreva a mensagem que você quer preparar. A IA organiza o esboço; você revisa cada
+              palavra.
+</p> <p class="draft-status" id="draftStatus" hidden> <svg class="icon" aria-hidden="true"> <use href="#i-check"></use> </svg> <span id="draftStatusText"></span> </p> </div> <div class="field"> <label class="field-label" for="baseTextInput">
+Texto-base  <span class="required" aria-hidden="true">
+*
+</span> <span class="sr-only">(obrigatório)</span> </label> <input class="input" type="text" id="baseTextInput" name="texto-base" placeholder="Ex.: João 3:16-21" autocomplete="off" spellcheck="false" aria-describedby="baseTextHint baseTextError"> <p class="field-hint" id="baseTextHint">
+Livro, capítulo e versículos. A referência orienta todo o esboço.
+</p> <p class="field-error" id="baseTextError" hidden></p> <div class="field-suggestions" role="group" aria-label="Sugestões de texto-base"> <span class="field-suggestions__label">Sugestões:</span> <button class="suggestion-chip" type="button" data-base-suggestion="João 3:16-21">
+João 3:16-21
+</button> <button class="suggestion-chip" type="button" data-base-suggestion="Salmo 23">
+Salmo 23
+</button> <button class="suggestion-chip" type="button" data-base-suggestion="Filipenses 2:1-11">
+Filipenses 2:1-11
+</button> </div> <button class="link-btn" type="button" id="toggleBibleText" aria-expanded="false" aria-controls="bibleTextWrap" style="margin-top: 7px;"> <svg class="icon" aria-hidden="true"> <use href="#i-chevron-down"></use> </svg>
+Colar o texto bíblico (opcional)
+</button> <div class="bible-text-wrap" id="bibleTextWrap" hidden> <label class="field-label" for="bibleTextInput">
+Texto bíblico integral
+</label> <textarea class="textarea" id="bibleTextInput" rows="4" placeholder="Cole aqui o trecho na sua tradução, para citações exatas." aria-describedby="bibleTextHint"></textarea> <p class="field-hint" id="bibleTextHint">
+Quando o texto é informado, a IA pode citá-lo sem depender de memória. Sem ele, o
+                versículo-chave aparece apenas como referência.
+</p> </div> </div> <div class="field"> <label class="field-label" for="themeInput">
+Tema ou título da mensagem  <span class="required" aria-hidden="true">
+*
+</span> <span class="sr-only">(obrigatório)</span> </label> <input class="input" type="text" id="themeInput" name="tema" placeholder="Ex.: O amor que se entrega" autocomplete="off" aria-describedby="themeError"> <p class="field-error" id="themeError" hidden></p> </div> <p class="form-section-label">Direção da mensagem</p> <div class="field-grid"> <div class="field"> <label class="field-label" for="typeSelect">
+Tipo de mensagem
+</label> <div class="select-wrap"> <select class="select" id="typeSelect"> <option value="expositiva" selected>
+Expositiva
+</option> <option value="tematica">Temática</option> <option value="textual">Textual</option> <option value="devocional">Devocional</option> <option value="estudo">Estudo bíblico</option> </select> </div> </div> <div class="field"> <label class="field-label" for="audienceSelect">
+Público
+</label> <div class="select-wrap"> <select class="select" id="audienceSelect"> <option value="geral" selected>
+Geral
+</option> <option value="jovens">Jovens</option> <option value="casais">Casais</option> <option value="criancas">Crianças</option> <option value="lideres">Líderes</option> <option value="evangelistico">Evangelístico</option> </select> </div> </div> </div> <div class="field"> <label class="field-label" for="toneSelect">
+Tom
+</label> <div class="select-wrap"> <select class="select" id="toneSelect"> <option value="acolhedor" selected>
+Acolhedor
+</option> <option value="firme">Firme</option> <option value="reflexivo">Reflexivo</option> <option value="motivacional">Motivacional</option> <option value="didatico">Didático</option> </select> </div> </div> <div class="field"> <span class="field-label" id="durationLabel">
+Duração
+</span> <div class="duration-options" role="group" aria-labelledby="durationLabel"> <button class="duration-btn" type="button" data-duration="10" aria-pressed="false">
+10<small>minutos</small> </button> <button class="duration-btn" type="button" data-duration="20" aria-pressed="false">
+20<small>minutos</small> </button> <button class="duration-btn" type="button" data-duration="30" aria-pressed="true">
+30<small>minutos</small> </button> <button class="duration-btn" type="button" data-duration="45" aria-pressed="false">
+45<small>minutos</small> </button> </div> <div class="duration-helper"> <span>
+Ritmo estimado: <strong>130 palavras/minuto</strong> </span> <span id="durationTarget">≈ 3.900 palavras-alvo</span> </div> </div> <button class="optional-toggle" type="button" id="optionalToggle" aria-expanded="false" aria-controls="optionalFields"> <span class="optional-toggle__mark" aria-hidden="true">
++
+</span> <span class="optional-toggle__text"> <strong>Contexto pastoral</strong> <small>Denominação, ocasião e pedidos da comunidade</small> </span> <svg class="icon optional-toggle__chevron" aria-hidden="true"> <use href="#i-chevron-down"></use> </svg> </button> <div class="optional-fields" id="optionalFields" hidden> <div class="field"> <label class="field-label" for="traditionInput">
+Tradição ou denominação
+</label> <input class="input" type="text" id="traditionInput" name="tradicao" placeholder="Ex.: batista, presbiteriana, católica, não denominacional" autocomplete="off" aria-describedby="traditionHint"> <p class="field-hint" id="traditionHint">
+Serve apenas para alinhar vocabulário e ênfases, sem estereótipos.
+</p> </div> <div class="field"> <label class="field-label" for="notesInput">
+Observações extras
+</label> <textarea class="textarea" id="notesInput" rows="3" placeholder="Ocasião, ênfases, pedidos da comunidade, textos que gostaria de relacionar..." aria-describedby="notesHint"></textarea> <p class="field-hint" id="notesHint">
+Tudo o que ajudar a IA a servir melhor ao seu contexto.
+</p> </div> </div> <div class="form-readiness" id="formReadiness" data-state="pending" role="status" aria-live="polite"> <span class="form-readiness__dot" aria-hidden="true"></span> <span id="formReadinessText">Preencha o texto-base e o tema para gerar.</span> </div> <div class="generate-area"> <button class="btn btn--primary btn--generate" type="button" id="generateBtn" aria-keyshortcuts="Control+Enter Meta+Enter"> <span class="spinner" aria-hidden="true"></span> <svg class="icon btn-icon" aria-hidden="true"> <use href="#i-sparkle"></use> </svg> <span id="generateLabel">Gerar pregação</span> <svg class="icon btn-arrow" aria-hidden="true"> <use href="#i-arrow-right"></use> </svg> </button> <p class="study-disclaimer"> <svg class="icon" aria-hidden="true"> <use href="#i-info"></use> </svg> <span>
+A IA é um apoio ao estudo; confira sempre o texto bíblico e ore sobre a mensagem.
+</span> </p> <div class="key-note"> <span class="key-dot" id="formKeyDot" aria-hidden="true"></span> <span id="formKeyText">
+Com o backend configurado, a geração usa o servidor da Clareira. Sem ele, o esboço é
+                montado localmente.
+</span> <button class="link-btn" type="button" id="formKeyBtn">
+Como funciona
+</button> </div> </div> </section> <!-- Coluna de saída --> <section class="output" id="output" aria-labelledby="outputTitle"> <div class="output-head"> <div> <p class="eyebrow">02 · Esboçar</p> <h2 id="outputTitle" tabindex="-1">
+Sua mensagem
+</h2> </div> <p class="output-aside">Rascunho editável</p> </div> <div class="error-banner" id="errorBanner" role="alert" hidden> <svg class="icon" aria-hidden="true"> <use href="#i-alert"></use> </svg> <div class="error-content"> <h3 id="errorTitle">Não foi possível concluir</h3> <p id="errorText"></p> <div class="error-actions"> <button class="btn btn--sm" type="button" id="errorRetryBtn">
+Tentar novamente
+</button> <button class="link-btn" type="button" id="errorSettingsBtn">
+Sobre a IA
+</button> </div> </div> <button class="error-close" type="button" id="errorCloseBtn" aria-label="Fechar aviso de erro"> <svg class="icon" aria-hidden="true"> <use href="#i-close"></use> </svg> </button> </div> <div class="empty-state" id="emptyState"> <div class="empty-inner"> <svg class="empty-art" viewBox="0 0 160 122" fill="none" aria-hidden="true"> <circle cx="80" cy="57" r="46" stroke="currentColor" stroke-width=".8" opacity=".22"></circle> <path d="M24 100h112" stroke="currentColor" stroke-width=".8" opacity=".35"></path> <path d="M80 41c-11-5.4-22.3-6.3-32.5-4.8v44.6c10.2-1.5 21.5-.6 32.5 4.8 11-5.4 22.3-6.3 32.5-4.8V36.2C102.3 34.7 91 35.6 80 41Zm0 0v44.6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path> <path d="M57 49.8c5.2-.5 9.8.4 13.5 2.4M57 58.2c5.2-.5 9.8.4 13.5 2.4M103 49.8c-5.2-.5-9.8.4-13.5 2.4M103 58.2c-5.2-.5-9.8.4-13.5 2.4" stroke="currentColor" stroke-width=".9" opacity=".55"></path> <path d="M80 23v-7M80 14l2.2 2.2M80 14l-2.2 2.2M115 31l4.5-4.5M55 26.5l-4.5-4.5M129 55h7M24 55h-7" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity=".5"></path> <path d="m126 18 .9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9.9-2.1ZM38 21l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6.6-1.4Z" fill="currentColor" opacity=".6"></path> </svg> <p class="empty-kicker">Seu estudo começa aqui</p> <h3>Um esboço com o seu texto, a sua voz e o seu tempo.</h3> <p>
+Preencha o estudo ao lado. A estrutura vem pronta para editar, salvar, levar ao
+                púlpito e imprimir.
+</p> <div class="empty-actions"> <button class="btn btn--ghost btn--sm" type="button" id="emptyStudyBtn">
+Ir ao formulário
+</button> <button class="btn btn--gold btn--sm" type="button" id="emptyExampleBtn"> <svg class="icon" aria-hidden="true"> <use href="#i-sparkle"></use> </svg>
+Ver exemplo demonstrativo
+</button> </div> <p class="empty-note">
+O exemplo é criado localmente, sem gastar API, e fica identificado como
+                demonstração.
+</p> <ol class="empty-steps" aria-label="Como o construtor funciona"> <li> <span aria-hidden="true">01</span> <p> <strong>Informe o texto e o tema</strong>A referência e o contexto orientam a
+                    exegese.
+</p> </li> <li> <span aria-hidden="true">02</span> <p> <strong>Revise cada parte</strong>
+Edite, regenere trechos e peça novas ilustrações.
+</p> </li> <li> <span aria-hidden="true">03</span> <p> <strong>Leve ao púlpito</strong>
+Salve, exporte em PDF ou abra o modo púlpito.
+</p> </li> </ol> <div class="empty-divider">Estrutura em 8 partes</div> </div> </div> <div class="loading-state" id="initialLoader" hidden aria-live="polite"> <div class="loading-head"> <span class="spinner" aria-hidden="true"></span> <div> <strong>Preparando seu esboço…</strong> <span id="loadingPhase">Lendo o texto e o contexto…</span> <span class="loading-hint" id="loadingHint">
+Isso pode levar até dois minutos. Você poderá revisar tudo.
+</span> </div> </div> <div class="skeleton skeleton--title"></div> <div style="margin-top: 18px;"> <div class="skeleton skeleton--line"></div> <div class="skeleton skeleton--line skeleton--short"></div> </div> <div class="skeleton-card"> <div class="skeleton skeleton--line" style="width: 48%;"></div> <div class="skeleton skeleton--line"></div> <div class="skeleton skeleton--line skeleton--short"></div> </div> <div class="skeleton-card"> <div class="skeleton skeleton--line" style="width: 38%;"></div> <div class="skeleton skeleton--line"></div> <div class="skeleton skeleton--line skeleton--short"></div> </div> </div> <div class="sermon-stage" id="sermonStage" hidden> <div class="sermon-toolbar" role="toolbar" aria-label="Ações da mensagem"> <div class="stats" role="group" aria-label="Estimativas da mensagem"> <span class="stat-pill"> <svg class="icon" aria-hidden="true"> <use href="#i-clock"></use> </svg> <strong id="timeEstimate">—</strong>&nbsp;min estimados
+</span> <span class="stat-sep" aria-hidden="true"></span> <span class="stat-pill" id="wordCount">
+0 palavras
+</span> </div> <div class="toolbar-actions"> <label class="sr-only" for="sectionJump">
+Ir para uma seção do esboço
+</label> <select class="jump-select" id="sectionJump" title="Ir para uma seção do esboço"> <option value="">Ir para…</option> <option value="identidade">Título e versículo</option> <option value="introducao">Introdução</option> <option value="contexto">Contexto</option> <option value="ponto-0">Ponto I</option> <option value="ponto-1">Ponto II</option> <option value="ponto-2">Ponto III</option> <option value="conclusao">Conclusão</option> <option value="apelo">Apelo</option> <option value="oracao">Oração</option> <option value="perguntas">Perguntas</option> </select> <button class="tool-btn tool-btn--accent" type="button" data-global-action="illustrate" title="Pedir novas ilustrações para a introdução e os três pontos"> <svg class="icon" aria-hidden="true"> <use href="#i-wand"></use> </svg>
+Mais ilustrações
+</button> <button class="tool-btn" type="button" data-global-action="simplify" title="Simplificar a linguagem de todo o esboço"> <svg class="icon" aria-hidden="true"> <use href="#i-simplify"></use> </svg>
+Simplificar
+</button> <span class="tool-divider" aria-hidden="true"></span> <button class="tool-btn" type="button" id="undoBtn" title="Desfazer a última alteração feita pela IA" disabled> <svg class="icon" aria-hidden="true"> <use href="#i-undo"></use> </svg>
+Desfazer
+</button> <button class="tool-btn tool-btn--save" type="button" id="saveBtn" aria-haspopup="dialog" aria-controls="libraryDialog" aria-keyshortcuts="Control+S Meta+S"> <svg class="icon" aria-hidden="true"> <use href="#i-bookmark"></use> </svg> <span id="saveBtnLabel">Salvar</span> </button> <button class="tool-btn" type="button" id="copyBtn"> <svg class="icon" aria-hidden="true"> <use href="#i-copy"></use> </svg>
+Copiar
+</button> <button class="tool-btn" type="button" id="printBtn"> <svg class="icon" aria-hidden="true"> <use href="#i-print"></use> </svg>
+PDF / imprimir
+</button> <button class="tool-btn tool-btn--pulpit" type="button" id="pulpitBtn"> <svg class="icon" aria-hidden="true"> <use href="#i-pulpit"></use> </svg>
+Modo púlpito
+</button> </div> <div class="target-progress"> <div class="target-progress__bar" id="targetMeter" role="progressbar" aria-label="Progresso em relação à duração escolhida" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"> <span id="targetMeterFill"></span> </div> <span class="target-progress__label" id="targetMeterLabel">
+Meta: 3.900 palavras
+</span> </div> </div> <div class="paper-wrap" id="paperWrap"> <article id="sermon" aria-labelledby="sermonTitle"> <div class="sermon-paper" id="sermonPaper"></div> </article> <div class="busy-overlay" id="sermonBusy" hidden aria-live="polite"> <span class="spinner" aria-hidden="true"></span> <strong id="sermonBusyLabel">Atualizando o esboço…</strong> <span id="sermonBusyDetail">
+A IA está revisando este trecho com cuidado. Aguarde.
+</span> </div> </div> </div> </section> </div> </main> <footer class="site-footer"> <div class="footer-grid"> <div> <span class="footer-brand">Clareira</span> <p class="footer-copy">
+Teologia para pensar devagar. Este construtor é uma ferramenta de estudo, não um
+            substituto para a Palavra, a comunidade e a oração.
+</p> </div> <div> <p class="footer-disclaimer">
+A IA é um apoio ao estudo; confira sempre o texto bíblico e ore sobre a mensagem.
+</p> <p class="footer-disclaimer" style="margin-top: 7px;">
+As gerações passam pelo servidor da Clareira. Nenhuma chave da Anthropic é enviada ao
+            navegador.
+</p> </div> </div> </footer> <!-- Confirmação para iniciar um novo esboço --> <dialog id="newDialog" class="new-dialog" aria-labelledby="newDialogTitle" aria-describedby="newDialogText"> <div class="dialog-shell"> <div class="dialog-head"> <div> <p class="eyebrow">Novo estudo</p> <h2 id="newDialogTitle">Começar um novo esboço?</h2> </div> <button class="dialog-close" type="button" data-close-dialog aria-label="Fechar confirmação de novo esboço"> <svg class="icon" aria-hidden="true"> <use href="#i-close"></use> </svg> </button> </div> <div class="dialog-body"> <p class="dialog-intro" id="newDialogText">
+O esboço atual e o rascunho salvo neste navegador serão substituídos. Se quiser guardar
+            esta mensagem, salve-a na biblioteca antes de continuar.
+</p> <div class="dialog-actions"> <button class="btn btn--sm" type="button" data-close-dialog autofocus>
+Continuar editando
+</button> <button class="btn btn--primary btn--sm" type="button" id="confirmNewBtn">
+Começar novo
+</button> </div> </div> </div> </dialog> <!-- Navegação e ações rápidas em telas menores --> <dialog id="menuDialog" class="menu-dialog" aria-labelledby="menuTitle"> <div class="dialog-shell"> <div class="dialog-head"> <div> <p class="eyebrow">Clareira</p> <h2 id="menuTitle">Navegação</h2> </div> <button class="dialog-close" type="button" data-close-dialog aria-label="Fechar menu de navegação"> <svg class="icon" aria-hidden="true"> <use href="#i-close"></use> </svg> </button> </div> <div class="dialog-body"> <nav class="menu-nav" aria-label="Navegação do site no menu"> <a class="menu-nav__link" href="/Conectesse-com-Deus/formacao/"> <span>Formação</span> <svg class="icon" aria-hidden="true"> <use href="#i-arrow-right"></use> </svg> </a><a class="menu-nav__link" href="/Conectesse-com-Deus/cursos/"> <span>Cursos</span> <svg class="icon" aria-hidden="true"> <use href="#i-arrow-right"></use> </svg> </a><a class="menu-nav__link" href="/Conectesse-com-Deus/biblias/"> <span>Bíblia</span> <svg class="icon" aria-hidden="true"> <use href="#i-arrow-right"></use> </svg> </a><a class="menu-nav__link" href="/Conectesse-com-Deus/videos/"> <span>Vídeos</span> <svg class="icon" aria-hidden="true"> <use href="#i-arrow-right"></use> </svg> </a><a class="menu-nav__link" href="/Conectesse-com-Deus/biblioteca/"> <span>Biblioteca</span> <svg class="icon" aria-hidden="true"> <use href="#i-arrow-right"></use> </svg> </a><a class="menu-nav__link" href="/Conectesse-com-Deus/pregacoes/" aria-current="page"> <span>Pregações</span> <svg class="icon" aria-hidden="true"> <use href="#i-arrow-right"></use> </svg> </a> </nav> <p class="menu-divider">Neste construtor</p> <div class="menu-actions"> <button class="menu-action" type="button" data-menu-action="form"> <svg class="icon" aria-hidden="true"> <use href="#i-edit"></use> </svg>
+Ir ao formulário
+</button> <button class="menu-action" type="button" data-menu-action="new"> <svg class="icon" aria-hidden="true"> <use href="#i-plus"></use> </svg>
+Começar um novo esboço
+</button> <button class="menu-action" type="button" data-menu-action="library"> <svg class="icon" aria-hidden="true"> <use href="#i-library"></use> </svg>
+Abrir biblioteca
+</button> <button class="menu-action" type="button" data-menu-action="settings"> <svg class="icon" aria-hidden="true"> <use href="#i-info"></use> </svg>
+Como a IA funciona
+</button> <button class="menu-action" type="button" data-menu-action="theme"> <svg class="icon" aria-hidden="true"> <use href="#i-moon" id="menuThemeIconUse"></use> </svg> <span id="menuThemeLabel">Ativar modo escuro</span> </button> </div> <p class="menu-note">
+A IA é um apoio ao estudo; confira sempre o texto bíblico e ore sobre a mensagem.
+</p> </div> </div> </dialog> <!-- Transparência sobre o uso da IA --> <dialog id="settingsDialog" aria-labelledby="settingsTitle"> <div class="dialog-shell"> <div class="dialog-head"> <div> <p class="eyebrow">Privacidade e segurança</p> <h2 id="settingsTitle">Como a IA funciona</h2> </div> <button class="dialog-close" type="button" data-close-dialog aria-label="Fechar informações sobre a IA"> <svg class="icon" aria-hidden="true"> <use href="#i-close"></use> </svg> </button> </div> <div class="dialog-body"> <p class="dialog-intro">
+Quando o serviço de IA está configurado, as gerações passam por um servidor da Clareira.
+            A chave da Anthropic fica protegida no servidor e nunca é enviada ao navegador. Sem esse
+            serviço, o botão Gerar pregação monta um esboço local de demonstração, sem enviar seus
+            dados a nenhum serviço.
+</p> <p class="notice-inline" id="settingsNotice" role="status" hidden></p> <div class="model-row" id="modelRow"> <span>Modelo de IA</span> <span class="model-chip">claude-sonnet-4-6</span> </div> <div class="key-status"> <span class="status-dot" id="keyStatusDot" aria-hidden="true"></span> <span id="keyStatusText">Verificando o serviço de IA…</span> </div> <div class="info-note" style="margin-top: 14px;"> <svg class="icon" aria-hidden="true"> <use href="#i-info"></use> </svg> <span>
+O texto-base, as observações e o esboço são enviados à Anthropic somente para produzir
+              a resposta. A Clareira não armazena esse conteúdo em seus servidores; o controle de
+              uso guarda apenas um hash do IP, a ação e a data. O rascunho e a biblioteca podem
+              ficar salvos somente neste navegador.  <a class="external-link" href="/Conectesse-com-Deus/privacidade/">
+Política de privacidade  <svg class="icon" aria-hidden="true"> <use href="#i-external"></use> </svg> </a> </span> </div> <div class="shortcut-list" role="group" aria-label="Atalhos de teclado"> <p> <span>Gerar pregação</span> <span> <kbd>Ctrl</kbd> + <kbd>Enter</kbd> </span> </p> <p> <span>Salvar na biblioteca</span> <span> <kbd>Ctrl</kbd> + <kbd>S</kbd> </span> </p> <p> <span>Fechar diálogos</span> <span> <kbd>Esc</kbd> </span> </p> </div> <div class="dialog-actions"> <button class="btn btn--primary btn--sm" type="button" data-close-dialog>
+Fechar
+</button> </div> <button class="demo-link" type="button" id="demoFromSettingsBtn"> <svg class="icon" aria-hidden="true"> <use href="#i-sparkle"></use> </svg>
+Criar exemplo local sem usar a API
+</button> </div> </div> </dialog> <!-- Biblioteca local --> <dialog id="libraryDialog" class="library-dialog" aria-labelledby="libraryTitle"> <div class="dialog-shell"> <div class="dialog-head"> <div> <p class="eyebrow">Salva neste navegador</p> <h2 id="libraryTitle">Biblioteca</h2> </div> <button class="dialog-close" type="button" data-close-dialog aria-label="Fechar biblioteca"> <svg class="icon" aria-hidden="true"> <use href="#i-close"></use> </svg> </button> </div> <div class="dialog-body"> <p class="dialog-intro">
+As pregações salvas ficam somente neste navegador e não são enviadas ao servidor. Use
+<strong>Exportar</strong> para guardar uma cópia em JSON ou leve o texto em PDF.
+</p> <div class="library-controls"> <div class="search-field"> <svg class="icon" aria-hidden="true"> <use href="#i-search"></use> </svg> <label class="sr-only" for="librarySearch">
+Buscar por tema ou título
+</label> <input class="input" type="search" id="librarySearch" placeholder="Buscar por tema, título ou texto-base" autocomplete="off"> </div> <div class="library-tools"> <button class="btn btn--sm btn--ghost" type="button" id="libraryExportBtn" title="Exportar a biblioteca em JSON" disabled> <svg class="icon" aria-hidden="true"> <use href="#i-download"></use> </svg>
+Exportar
+</button> <button class="btn btn--sm btn--ghost" type="button" id="libraryImportBtn" title="Importar uma biblioteca em JSON"> <svg class="icon" aria-hidden="true"> <use href="#i-upload"></use> </svg>
+Importar
+</button> <input class="sr-only" type="file" id="libraryImportInput" accept="application/json,.json" tabindex="-1" aria-hidden="true"> </div> </div> <p class="library-note" id="libraryNote">
+Nenhuma pregação salva ainda.
+</p> <div class="library-list" id="libraryList" aria-live="polite"></div> </div> </div> </dialog> <!-- Leitura em tela cheia --> <dialog id="pulpitDialog" class="pulpit-dialog" aria-label="Modo púlpito"> <div class="pulpit-progress" id="pulpitProgress" aria-hidden="true"></div> <div class="pulpit-topbar"> <button class="pulpit-close" type="button" id="pulpitCloseBtn"> <svg class="icon" aria-hidden="true"> <use href="#i-close"></use> </svg> <span>Fechar</span> </button> <div class="pulpit-brand"> <svg class="icon" aria-hidden="true"> <use href="#i-pulpit"></use> </svg> <span>Modo púlpito</span> </div> <div class="pulpit-controls"> <span class="pulpit-time" id="pulpitTime"></span> <div class="font-controls" role="group" aria-label="Tamanho do texto"> <button type="button" id="pulpitFontMinus" aria-label="Diminuir tamanho do texto">
+A−
+</button> <span class="font-value" id="pulpitFontValue" aria-live="polite">
+100%
+</span> <button type="button" id="pulpitFontPlus" aria-label="Aumentar tamanho do texto">
+A+
+</button> </div> </div> </div> <div class="pulpit-scroll" id="pulpitScroll"> <article class="pulpit-article" id="pulpitArticle"></article> </div> </dialog> <div class="toast-region" id="toastRegion" role="status" aria-live="polite" aria-atomic="false"></div> <p class="sr-only" id="liveStatus" role="status" aria-live="polite" aria-atomic="true"></p> <noscript> <div style="position: fixed; inset: 0; z-index: 999; display: grid; place-items: center; padding: 24px; background: #f4efe6; color: #102a3c; font-family: Georgia, serif; text-align: center;"> <p style="max-width: 520px; font-size: 18px; line-height: 1.7;">
+Este construtor precisa de JavaScript para gerar, editar e salvar as mensagens. Ative o
+          JavaScript no navegador e recarregue a página.
+</p> </div> </noscript><script type="module" src="/Conectesse-com-Deus/_astro/pregacoes.astro_astro_type_script_index_0_lang.BDBjo7WG.js"></script> </body> </html>

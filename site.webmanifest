@@ -1,0 +1,60 @@
+{
+  "name": "Clareira — Teologia bíblica e sistemática",
+  "short_name": "Clareira",
+  "description": "Uma escola de teologia bíblica e sistemática: formação completa, aulas objetivas, biblioteca de Bíblias, vídeos comentados e um caderno que acompanha o seu ritmo.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "/Conectesse-com-Deus/",
+  "scope": "/Conectesse-com-Deus/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f6f3ea",
+  "theme_color": "#202a23",
+  "categories": [
+    "education",
+    "books",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "/Conectesse-com-Deus/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Conectesse-com-Deus/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Conectesse-com-Deus/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Formação completa",
+      "url": "/Conectesse-com-Deus/formacao/",
+      "description": "Percurso de quatro semestres"
+    },
+    {
+      "name": "Guia de Bíblias",
+      "url": "/Conectesse-com-Deus/biblias/",
+      "description": "Tipos, traduções e como escolher"
+    },
+    {
+      "name": "Vídeos recomendados",
+      "url": "/Conectesse-com-Deus/videos/",
+      "description": "Repertório de aulas e pregações"
+    },
+    {
+      "name": "Meu caderno",
+      "url": "/Conectesse-com-Deus/notas/",
+      "description": "Notas de estudo"
+    }
+  ]
+}

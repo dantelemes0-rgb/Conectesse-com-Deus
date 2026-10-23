@@ -1,0 +1,5 @@
+Contact: mailto:contato@clareira.com.br
+Expires: 2027-10-21T00:00:00.000Z
+Preferred-Languages: pt-BR, en
+Canonical: https://dantelemes0-rgb.github.io/Conectesse-com-Deus/.well-known/security.txt
+Policy: https://dantelemes0-rgb.github.io/Conectesse-com-Deus/privacidade/

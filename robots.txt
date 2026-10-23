@@ -1,0 +1,8 @@
+# robots.txt — Clareira
+User-agent: *
+Allow: /
+Disallow: /Conectesse-com-Deus/conta/
+Disallow: /Conectesse-com-Deus/notas/
+
+# Conteúdo educativo. Sitemap abaixo.
+Sitemap: https://dantelemes0-rgb.github.io/Conectesse-com-Deus/sitemap.xml

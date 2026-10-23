@@ -1,147 +1,185 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Um espaço completo para estudar teologia com método e profundidade.">
-  <title>Logos | Estudo de Teologia</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase-config.js"></script>
-</head>
-<body>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <a class="brand" href="#inicio" aria-label="Logos início">
-        <span class="brand-mark">λ</span>
-        <span>logos<span class="brand-dot">.</span></span>
-      </a>
-      <p class="eyebrow sidebar-label">Seu seminário pessoal</p>
-      <nav class="primary-nav" aria-label="Navegação principal">
-        <a class="nav-link active" href="#inicio"><span class="nav-icon">⌂</span> Visão geral</a>
-        <a class="nav-link" href="#trilhas"><span class="nav-icon">◈</span> Trilhas de estudo</a>
-        <a class="nav-link" href="#biblioteca"><span class="nav-icon">▤</span> Biblioteca</a>
-        <a class="nav-link" href="#minhas-notas"><span class="nav-icon">✎</span> Minhas notas</a>
-      </nav>
-      <div class="sidebar-spacer"></div>
-      <div class="streak-card">
-        <span class="streak-symbol">✦</span>
-        <div>
-          <strong>7 dias seguidos</strong>
-          <p>Continue cultivando o hábito.</p>
-        </div>
-      </div>
-      <div class="profile">
-        <div class="avatar">DA</div>
-        <div><strong>Dante Alves</strong><span>Explorador</span></div>
-        <button class="more-button" aria-label="Mais opções">•••</button>
-      </div>
-    </aside>
-
-    <main class="main-content" id="inicio">
-      <header class="topbar">
-        <div class="breadcrumbs"><span>Início</span><span>/</span><strong>Visão geral</strong></div>
-        <label class="search-field"><span>⌕</span><input id="global-search" type="search" placeholder="Buscar um tema, autor ou livro..." aria-label="Buscar um tema, autor ou livro"></label>
-        <button class="icon-button" aria-label="Notificações">♧<span class="notification-dot"></span></button>
-      </header>
-
-      <div class="content-wrap">
-        <section class="welcome-section" aria-labelledby="welcome-title">
-          <div>
-            <p class="eyebrow">QUINTA-FEIRA, 10 DE SETEMBRO</p>
-            <h1 id="welcome-title">Olá, Dante<span class="title-dot">.</span></h1>
-            <p class="subtitle">O conhecimento cresce quando a curiosidade encontra uma boa pergunta.</p>
-          </div>
-          <button class="button button-dark" id="continue-button">Continuar estudando <span>→</span></button>
-        </section>
-
-        <section class="progress-grid" aria-label="Resumo dos seus estudos">
-          <article class="progress-card warm-card">
-            <div class="card-topline"><span class="eyebrow">TRILHA ATUAL</span><span class="progress-percent">32%</span></div>
-            <h2>Introdução à Teologia</h2>
-            <div class="progress-track"><span style="width:32%"></span></div>
-            <div class="card-meta"><span>4 de 12 aulas concluídas</span><span>↗</span></div>
-          </article>
-          <article class="progress-card blue-card">
-            <div class="card-topline"><span class="eyebrow">TEMPO DE ESTUDO</span><span class="card-icon">◷</span></div>
-            <strong class="big-number">04<span>h</span> 28<span>min</span></strong>
-            <div class="card-meta"><span>+42 min esta semana</span><span class="positive">↑ 18%</span></div>
-          </article>
-          <article class="progress-card dark-card">
-            <div class="card-topline"><span class="eyebrow">CONHECIMENTO</span><span class="card-icon">✦</span></div>
-            <strong class="big-number">18<span> conceitos</span></strong>
-            <div class="card-meta"><span>5 para revisar hoje</span><span>→</span></div>
-          </article>
-        </section>
-
-        <section class="section-block" id="trilhas">
-          <div class="section-heading"><div><p class="eyebrow">APRENDIZADO GUIADO</p><h2>Suas trilhas</h2></div><a class="text-link" href="#biblioteca">Ver todas <span>→</span></a></div>
-          <div class="course-grid">
-            <article class="course-card course-featured">
-              <div class="course-visual visual-olive"><span class="course-number">01</span><span class="visual-mark">✺</span><span class="visual-caption">A busca pelo sentido</span></div>
-              <div class="course-body"><span class="tag">EM ANDAMENTO</span><h3>Introdução à Teologia</h3><p>As grandes perguntas, os métodos e as vozes que moldaram o pensamento teológico.</p><div class="course-footer"><span>12 aulas · 3h 40min</span><span class="course-progress">32%</span></div></div>
-            </article>
-            <article class="course-card">
-              <div class="course-visual visual-clay"><span class="course-number">02</span><span class="visual-mark roman-mark">I—V</span><span class="visual-caption">Vozes através do tempo</span></div>
-              <div class="course-body"><span class="tag tag-muted">PRÓXIMA TRILHA</span><h3>História do Cristianismo</h3><p>De Jerusalém à contemporaneidade: movimentos, concílios e transformações.</p><div class="course-footer"><span>18 aulas · 5h 20min</span><span class="course-arrow">→</span></div></div>
-            </article>
-            <article class="course-card">
-              <div class="course-visual visual-ink"><span class="course-number">03</span><span class="visual-mark">☼</span><span class="visual-caption">O texto e suas camadas</span></div>
-              <div class="course-body"><span class="tag tag-muted">PRÓXIMA TRILHA</span><h3>Leitura Bíblica</h3><p>Contexto, gênero e ferramentas para uma leitura mais atenta das Escrituras.</p><div class="course-footer"><span>15 aulas · 4h 10min</span><span class="course-arrow">→</span></div></div>
-            </article>
-          </div>
-        </section>
-
-        <section class="lower-grid" id="biblioteca">
-          <article class="reading-panel">
-            <div class="section-heading"><div><p class="eyebrow">PARA HOJE</p><h2>Leitura recomendada</h2></div><button class="round-button" aria-label="Abrir leitura">↗</button></div>
-            <div class="reading-content"><div class="book-cover"><span>ÉTICA<br><i>A Nicômaco</i></span><small>ARISTÓTELES</small></div><div class="reading-info"><span class="tag">FILOSOFIA</span><h3>O que significa viver bem?</h3><p>Uma introdução à ética das virtudes e à pergunta que atravessa toda vida humana.</p><div class="reading-meta"><span>12 min de leitura</span><span>•</span><span>Cap. 1</span></div></div></div>
-          </article>
-          <article class="timeline-panel" id="notas">
-            <div class="section-heading"><div><p class="eyebrow">EXPLORE</p><h2>Mapa de ideias</h2></div><a class="text-link" href="#trilhas">Abrir mapa <span>↗</span></a></div>
-            <div class="timeline"><div class="timeline-line"></div><div class="timeline-item"><span class="timeline-year">SÉC. IV a.C.</span><div><strong>Aristóteles</strong><p>Ética, virtude e a vida boa</p></div></div><div class="timeline-item"><span class="timeline-year">SÉC. V d.C.</span><div><strong>Agostinho</strong><p>Interioridade e desejo</p></div></div><div class="timeline-item"><span class="timeline-year">SÉC. XX</span><div><strong>Paul Tillich</strong><p>Coragem de ser</p></div></div></div>
-          </article>
-        </section>
-        <section class="catalog-section" id="catalogo">
-          <div class="section-heading catalog-heading"><div><p class="eyebrow">CATÁLOGO DE FORMAÇÃO</p><h2>Encontre seu próximo estudo</h2></div><span class="catalog-count">12 cursos disponíveis</span></div>
-          <div class="filter-bar" role="toolbar" aria-label="Filtrar cursos">
-            <button class="filter-button active" data-filter="todos">Todos</button>
-            <button class="filter-button" data-filter="base">Base teológica</button>
-            <button class="filter-button" data-filter="ministerio">Ministério</button>
-            <button class="filter-button" data-filter="lideranca">Liderança</button>
-            <button class="filter-button" data-filter="familia">Família e cuidado</button>
-          </div>
-          <div class="catalog-grid">
-            <article class="catalog-card" data-category="base" data-course="Hermenêutica: como ler a Bíblia"><div class="catalog-art art-sand">01</div><div class="catalog-card-body"><span class="tag">BASE TEOLÓGICA</span><h3>Hermenêutica: como ler a Bíblia</h3><p>12 aulas · 4h 20min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
-            <article class="catalog-card" data-category="ministerio" data-course="Homilética prática"><div class="catalog-art art-red">02</div><div class="catalog-card-body"><span class="tag">MINISTÉRIO</span><h3>Homilética prática</h3><p>8 aulas · 2h 40min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
-            <article class="catalog-card" data-category="lideranca" data-course="Liderança com propósito"><div class="catalog-art art-blue">03</div><div class="catalog-card-body"><span class="tag">LIDERANÇA</span><h3>Liderança com propósito</h3><p>10 aulas · 3h 10min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
-            <article class="catalog-card" data-category="familia" data-course="Aconselhamento e cuidado"><div class="catalog-art art-olive">04</div><div class="catalog-card-body"><span class="tag">FAMÍLIA E CUIDADO</span><h3>Aconselhamento e cuidado</h3><p>6 aulas · 1h 50min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
-            <article class="catalog-card" data-category="base" data-course="Teologia sistemática"><div class="catalog-art art-olive">05</div><div class="catalog-card-body"><span class="tag">BASE TEOLÓGICA</span><h3>Teologia sistemática</h3><p>14 aulas · 5h 10min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
-            <article class="catalog-card" data-category="ministerio" data-course="Missão e evangelismo"><div class="catalog-art art-sand">06</div><div class="catalog-card-body"><span class="tag">MINISTÉRIO</span><h3>Missão e evangelismo</h3><p>9 aulas · 3h 05min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
-            <article class="catalog-card" data-category="lideranca" data-course="Liderança servidora"><div class="catalog-art art-red">07</div><div class="catalog-card-body"><span class="tag">LIDERANÇA</span><h3>Liderança servidora</h3><p>7 aulas · 2h 15min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
-            <article class="catalog-card" data-category="familia" data-course="Cuidado da alma"><div class="catalog-art art-blue">08</div><div class="catalog-card-body"><span class="tag">FAMÍLIA E CUIDADO</span><h3>Cuidado da alma</h3><p>8 aulas · 2h 40min</p><button class="catalog-action">Ver curso <span>→</span></button></div></article>
-          </div>
-        </section>
-        <section class="membership-section">
-          <div><p class="eyebrow">CAMINHO COMPLETO</p><h2>Uma biblioteca para acompanhar sua vocação.</h2><p>Comece pelo essencial, avance no seu ritmo e volte aos temas quando precisar.</p></div>
-          <div class="membership-points"><span>✓ Aulas organizadas por trilhas</span><span>✓ Materiais para baixar</span><span>✓ Certificado de conclusão</span></div>
-          <button class="button button-dark" id="membership-button">Conhecer a formação <span>→</span></button>
-        </section>
-        <section class="notes-section" id="minhas-notas">
-          <div class="section-heading"><div><p class="eyebrow">SEU CADERNO</p><h2>Minhas notas</h2></div><span class="notes-status" id="notes-status">Salvas neste dispositivo</span></div>
-          <textarea id="notes-input" placeholder="Registre uma pergunta, uma ideia ou uma referência para revisar depois..." aria-label="Minhas notas"></textarea>
-          <div class="notes-footer"><span id="notes-count">0 caracteres</span><button class="button button-dark" id="save-notes">Salvar notas <span>✓</span></button></div>
-        </section>
-        <footer class="footer-note"><span>LOGOS / UM LUGAR PARA PENSAR DEVAGAR</span><span>Feito para perguntas honestas.</span></footer>
-      </div>
-    </main>
-  </div>
-  <div class="toast" id="toast" role="status">Sua próxima aula está pronta.</div>
-  <div class="lesson-modal" id="lesson-modal" aria-hidden="true"><div class="modal-backdrop" data-close-modal></div><section class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" aria-label="Fechar aula" data-close-modal>×</button><span class="tag">TRILHA DE ESTUDO</span><h2 id="modal-title">Hermenêutica: como ler a Bíblia</h2><p id="modal-description">Aprenda a observar contexto, gênero literário e intenção do texto antes de formular uma interpretação.</p><div class="lesson-list" id="lesson-list"></div><button class="button button-dark" id="start-lesson">Marcar próxima aula como concluída <span>✓</span></button></section></div>
-  <script src="backend.js"></script>
-  <script src="app.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html lang="pt-BR"> <head><script>
+      document.documentElement.classList.add('js');
+    </script><meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>Clareira — Teologia bíblica e sistemática</title> <meta name="description" content="Uma escola de teologia bíblica e sistemática: formação completa, aulas objetivas, biblioteca de Bíblias, vídeos comentados e um caderno que acompanha o seu ritmo."> <link rel="canonical" href="https://dantelemes0-rgb.github.io/Conectesse-com-Deus/"> <meta name="robots" content="index, follow, max-image-preview:large"> <meta name="author" content="Clareira"> <meta name="generator" content="Astro v7.4.1"> <meta property="og:type" content="website"> <meta property="og:site_name" content="Clareira"> <meta property="og:locale" content="pt_BR"> <meta property="og:title" content="Clareira — Teologia bíblica e sistemática"> <meta property="og:description" content="Uma escola de teologia bíblica e sistemática: formação completa, aulas objetivas, biblioteca de Bíblias, vídeos comentados e um caderno que acompanha o seu ritmo."> <meta property="og:url" content="https://dantelemes0-rgb.github.io/Conectesse-com-Deus/"> <meta property="og:image" content="https://dantelemes0-rgb.github.io/Conectesse-com-Deus/og-image.png"> <meta property="og:image:width" content="1200"> <meta property="og:image:height" content="630"> <meta property="og:image:alt" content="Clareira — teologia bíblica e sistemática"> <meta name="twitter:card" content="summary_large_image"> <meta name="twitter:title" content="Clareira — Teologia bíblica e sistemática"> <meta name="twitter:description" content="Uma escola de teologia bíblica e sistemática: formação completa, aulas objetivas, biblioteca de Bíblias, vídeos comentados e um caderno que acompanha o seu ritmo."> <meta name="twitter:image" content="https://dantelemes0-rgb.github.io/Conectesse-com-Deus/og-image.png"> <meta name="twitter:image:alt" content="Clareira — teologia bíblica e sistemática"> <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"Clareira","url":"https://dantelemes0-rgb.github.io/Conectesse-com-Deus/","description":"Uma escola de teologia bíblica e sistemática: formação completa, aulas objetivas, biblioteca de Bíblias, vídeos comentados e um caderno que acompanha o seu ritmo.","inLanguage":"pt-BR"},{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Clareira — Escola de Teologia","url":"https://dantelemes0-rgb.github.io/Conectesse-com-Deus/","description":"Uma escola de teologia bíblica e sistemática: formação completa, aulas objetivas, biblioteca de Bíblias, vídeos comentados e um caderno que acompanha o seu ritmo.","email":"contato@clareira.com.br","knowsAbout":["Teologia Bíblica","Teologia Sistemática","Escrituras e Bíblias","História e Tradição","Ministério e Pregação","Cuidado e Vida"]}]</script><link rel="icon" href="/Conectesse-com-Deus/favicon.svg" type="image/svg+xml"><link rel="icon" href="/Conectesse-com-Deus/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/Conectesse-com-Deus/apple-touch-icon.png"><link rel="manifest" href="/Conectesse-com-Deus/site.webmanifest"><meta name="theme-color" content="#202a23"><meta name="format-detection" content="telephone=no"><script>
+      if (
+        location.protocol === 'http:' &&
+        location.hostname !== 'localhost' &&
+        location.hostname !== '127.0.0.1'
+      ) {
+        location.replace(
+          'https://' + location.host + location.pathname + location.search + location.hash,
+        );
+      }
+    </script><link rel="stylesheet" href="/Conectesse-com-Deus/_astro/Seo.CNz46-X2.css"><link rel="stylesheet" href="/Conectesse-com-Deus/_astro/BaseLayout.BXbF4AYa.css"><script type="module" src="/Conectesse-com-Deus/_astro/page.B3sWyS9n.js"></script></head> <body> <a class="skip-link" href="#conteudo">
+Pular para o conteúdo
+</a> <header class="site-header" data-header> <div class="container header-inner"> <a class="brand" href="/Conectesse-com-Deus/" data-home-link="/Conectesse-com-Deus/"> <svg class="brand__mark" viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false"> <path d="M9 34c2.8-8.7 8.3-14.5 15-14.5S36.2 25.3 39 34" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path> <path d="M7 34h34" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path> <circle cx="24" cy="21" r="4.3" fill="var(--accent)"></circle> </svg> <span>
+clareira<span class="brand__dot">.</span> </span> <span class="sr-only">— página inicial</span> </a> <nav class="primary-nav" aria-label="Navegação principal"> <a class="nav-link" href="/Conectesse-com-Deus/formacao/" data-nav-link> Formação </a><a class="nav-link" href="/Conectesse-com-Deus/cursos/" data-nav-link> Cursos </a><a class="nav-link" href="/Conectesse-com-Deus/biblias/" data-nav-link> Bíblia </a><a class="nav-link" href="/Conectesse-com-Deus/videos/" data-nav-link> Vídeos </a><a class="nav-link" href="/Conectesse-com-Deus/biblioteca/" data-nav-link> Biblioteca </a><a class="nav-link" href="/Conectesse-com-Deus/pregacoes/" data-nav-link> Pregações </a> </nav> <div class="header-actions"> <button class="search-trigger" type="button" data-search-open aria-haspopup="dialog" aria-controls="site-search" aria-expanded="false" aria-keyshortcuts="Control+K Meta+K" aria-label="Buscar no site"> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/> </svg> <span class="search-trigger__label">Buscar</span> </button> <div data-auth-guest class="header-auth-guest"> <a class="nav-link" href="/Conectesse-com-Deus/conta/">
+Entrar
+</a> </div> <a class="btn btn--accent btn--header-start" href="/Conectesse-com-Deus/formacao/" data-track="cta_click" data-track-id="header_start" data-track-location="header">
+Começar formação
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> <div data-auth-user hidden class="auth-menu"> <button class="avatar-button" type="button" data-auth-toggle aria-expanded="false" aria-controls="auth-menu"> <span class="avatar" data-auth-initial aria-hidden="true">
+DA
+</span> <span class="auth-menu__label">Minha conta</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="m6 9 6 6 6-6"/> </svg> </button> <div class="auth-dropdown" id="auth-menu" data-auth-menu hidden> <div class="auth-dropdown__head"> <strong class="auth-dropdown__name" data-auth-name>
+Sua conta
+</strong> <span class="auth-dropdown__email" data-auth-email></span> </div> <a href="/Conectesse-com-Deus/conta/"> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/> </svg> Minha conta
+</a> <a href="/Conectesse-com-Deus/continuar/"> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 16 9 5 9-5"/> </svg> Meu percurso
+</a> <a href="/Conectesse-com-Deus/notas/"> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 5.5v16"/><path d="M8 7h8"/> </svg> Minhas notas
+</a> <button type="button" data-auth-logout> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M9 21H4V3h5"/><path d="M14 8l4 4-4 4"/><path d="M8 12h10"/> </svg> Sair
+</button> </div> </div> <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu"> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/> </svg> </button> </div> </div> </header> <noscript> <nav class="no-js-nav container" aria-label="Navegação principal sem JavaScript"> <a class="nav-link" href="/Conectesse-com-Deus/formacao/"> Formação </a><a class="nav-link" href="/Conectesse-com-Deus/cursos/"> Cursos </a><a class="nav-link" href="/Conectesse-com-Deus/biblias/"> Bíblia </a><a class="nav-link" href="/Conectesse-com-Deus/videos/"> Vídeos </a><a class="nav-link" href="/Conectesse-com-Deus/biblioteca/"> Biblioteca </a><a class="nav-link" href="/Conectesse-com-Deus/pregacoes/"> Pregações </a> <a class="nav-link" href="/Conectesse-com-Deus/continuar/">
+Meu percurso
+</a> </nav> </noscript> <div class="mobile-panel" id="mobile-menu" data-menu-panel hidden> <nav aria-label="Navegação mobile"> <a class="nav-link" href="/Conectesse-com-Deus/formacao/" data-nav-link> Formação </a><a class="nav-link" href="/Conectesse-com-Deus/cursos/" data-nav-link> Cursos </a><a class="nav-link" href="/Conectesse-com-Deus/biblias/" data-nav-link> Bíblia </a><a class="nav-link" href="/Conectesse-com-Deus/videos/" data-nav-link> Vídeos </a><a class="nav-link" href="/Conectesse-com-Deus/biblioteca/" data-nav-link> Biblioteca </a><a class="nav-link" href="/Conectesse-com-Deus/pregacoes/" data-nav-link> Pregações </a> <a class="nav-link" href="/Conectesse-com-Deus/continuar/" data-nav-link>
+Meu percurso
+</a> </nav> <div class="mobile-panel__auth"> <div data-auth-guest> <a class="btn btn--ghost btn--block" href="/Conectesse-com-Deus/conta/">
+Entrar
+</a> <a class="btn btn--accent btn--block" href="/Conectesse-com-Deus/formacao/" data-track="cta_click" data-track-id="mobile_start" data-track-location="mobile_menu">
+Começar formação
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </div> <div data-auth-user hidden> <a class="btn btn--ghost btn--block" href="/Conectesse-com-Deus/conta/">
+Minha conta
+</a> <a class="btn btn--ghost btn--block" href="/Conectesse-com-Deus/continuar/">
+Meu percurso
+</a> <a class="btn btn--ghost btn--block" href="/Conectesse-com-Deus/notas/">
+Minhas notas
+</a> <button class="btn btn--ghost btn--block" type="button" data-auth-logout>
+Sair
+</button> </div> </div> </div> <dialog class="search-dialog" id="site-search" data-search-dialog data-search-index="/Conectesse-com-Deus/busca.json" aria-labelledby="search-dialog-title"> <div class="search-dialog__surface"> <div class="search-dialog__head"> <div> <p class="eyebrow">BUSCA NA CLAREIRA</p> <h2 id="search-dialog-title">O que você quer estudar?</h2> </div> <button class="search-close" type="button" data-search-close aria-label="Fechar busca"> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="m6 6 12 12"/><path d="M18 6 6 18"/> </svg> </button> </div> <form class="search-form" role="search" aria-label="Busca no site" data-search-form> <button class="search-submit" type="submit" aria-label="Buscar"> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/> </svg> </button> <label class="sr-only" for="site-search-input">
+Buscar no site
+</label> <input id="site-search-input" type="search" placeholder="Trilha, aula, tema, livro, tradução..." autocomplete="off" spellcheck="false" aria-controls="search-results" aria-describedby="search-status" data-search-input> <button class="search-reset" type="button" data-search-reset aria-label="Limpar busca" hidden> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="m6 6 12 12"/><path d="M18 6 6 18"/> </svg> </button> <kbd class="search-key" data-search-escape>
+Esc
+</kbd> </form> <div class="search-dialog__body"> <div class="search-suggestions" data-search-suggestions> <p class="search-suggestions__title">Sugestões para começar</p> <div class="search-suggestions__grid"> <a class="search-suggestion" href="/Conectesse-com-Deus/formacao/"> <span> <strong>Ver a formação completa</strong> <small>Quatro semestres, seis áreas</small> </span> <span aria-hidden="true">→</span> </a><a class="search-suggestion" href="/Conectesse-com-Deus/cursos/teologia-biblica/"> <span> <strong>Começar por Teologia Bíblica</strong> <small>O fio da história das Escrituras</small> </span> <span aria-hidden="true">→</span> </a><a class="search-suggestion" href="/Conectesse-com-Deus/biblias/"> <span> <strong>Comparar traduções da Bíblia</strong> <small>ARC, ARA, NAA, NVI, NVT, A21 e Jerusalém</small> </span> <span aria-hidden="true">→</span> </a> </div> </div> <p class="search-status" id="search-status" data-search-status aria-live="polite">
+Digite para buscar em trilhas, aulas, artigos e vídeos.
+</p> <ul class="search-results" id="search-results" data-search-results aria-label="Resultados da busca"></ul> <div class="search-empty" data-search-empty hidden> <p> <strong>Nada encontrado por aqui.</strong> </p> <p>
+Tente uma palavra mais ampla, como “Bíblia”, “graça” ou “pregação”. Você também pode
+<a href="/Conectesse-com-Deus/cursos/">percorrer o catálogo completo</a>.
+</p> </div> </div> <div class="search-dialog__foot"> <span> <kbd>Enter</kbd> abre o resultado
+</span> <span> <kbd>Esc</kbd> fecha a busca
+</span> </div> </div> </dialog> <div class="container storage-warning" data-storage-warning role="status" hidden> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/> </svg> <p> <strong>O navegador bloqueou o armazenamento local.</strong>
+Nesta visita, progresso e notas não serão salvos. Você pode liberar o armazenamento nas
+        configurações do navegador ou entrar na sua conta para sincronizar.
+</p> </div> <main id="conteudo" tabindex="-1">  <section class="hero"> <div class="container hero__grid"> <div> <p class="eyebrow eyebrow--accent">ESCOLA DE TEOLOGIA BÍBLICA E SISTEMÁTICA</p> <h1 class="hero__title">
+Teologia para pensar devagar<span class="text-accent">.</span> </h1> <p class="hero__lead">
+Da criação à nova criação; da doutrina de Deus à vida da Igreja. Uma formação completa,
+          com aulas, guia de Bíblias, vídeos comentados e um caderno que acompanha o seu ritmo.
+</p> <div class="hero__actions"> <a class="btn btn--accent" href="/Conectesse-com-Deus/formacao/" data-track="cta_click" data-track-id="hero_start" data-track-location="hero">
+Conhecer a formação
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> <a class="link-arrow" href="/Conectesse-com-Deus/cursos/">
+Ver todas as trilhas
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </div> <div class="hero__micro"> <span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/> </svg> 14 trilhas guiadas
+</span> <span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/> </svg> 70 aulas objetivas
+</span> <span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/> </svg> 14 repertórios de vídeo
+</span> </div> </div> <aside class="hero-visual" aria-label="Prévia da sua trilha de estudos"> <span class="art-label">CADERNO / 01</span> <div class="study-card" data-hero-card data-course="introducao-a-teologia" data-base="/Conectesse-com-Deus/cursos/introducao-a-teologia/" data-lessons="o-que-e-teologia,por-que-estudar-teologia,como-estudar-com-metodo,perguntas-que-nos-acompanham"> <div class="study-card__top"> <span class="tag tag--accent">Trilha inicial</span> <span class="mono text-muted" data-hero-percent>
+0%
+</span> </div> <h3>Introdução à Teologia</h3> <p class="course-card__desc">Um convite a pensar a fé com método: o que é teologia, por que estudá-la e como ler com profundidade.</p> <div class="progress" role="presentation"> <span class="progress__bar" data-hero-bar style="width: 0%"></span> </div> <div class="study-card__meta"> <span data-hero-count>0 de 4 aulas</span> <span>1h 43min</span> </div> <a class="btn btn--ghost btn--sm btn--block" href="/Conectesse-com-Deus/cursos/introducao-a-teologia/" data-hero-link> <span data-hero-label>Começar pela primeira aula</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> <blockquote class="study-card__quote">
+“O conhecimento cresce quando a curiosidade encontra uma boa pergunta.”
+</blockquote> </div> <div class="floating-note" aria-hidden="true"> <span>Nota de estudo</span> <p>Ler devagar também é um método.</p> </div> </aside> </div> </section> <section aria-label="Números da Clareira"> <div class="container"> <div class="stat-strip"> <div class="stat"> <span class="stat__number">14</span> <span class="stat__label">trilhas de estudo</span> </div> <div class="stat"> <span class="stat__number">70</span> <span class="stat__label">aulas guiadas</span> </div> <div class="stat"> <span class="stat__number">14</span> <span class="stat__label">repertórios de vídeo</span> </div> <div class="stat"> <span class="stat__number">4</span> <span class="stat__label">semestres de formação</span> </div> </div> </div> </section> <section class="section section--line" aria-labelledby="formacao-home-title"> <div class="container"> <div class="section-head"> <div class="section-head__text"> <p class="eyebrow">A FORMAÇÃO COMPLETA</p> <h2 id="formacao-home-title">Seis áreas. Uma história inteira.</h2> <p>
+O percurso começa no texto, passa por todos os grandes loci da teologia sistemática e
+            termina na prática da Igreja. Você pode seguir a sequência ou entrar pela pergunta que
+            já tem.
+</p> </div> <a class="link-arrow" href="/Conectesse-com-Deus/formacao/">
+Ver os quatro semestres
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </div> <div class="track-grid"> <article class="track-card"> <div class="track-card__top"> <span class="mono text-muted">01</span> <span class="tag">4 trilhas</span> </div> <h3>Teologia Bíblica</h3> <p class="track-card__short">O fio da história</p> <p>Leia a Escritura como um enredo: criação, aliança, êxodo, reino, exílio, Messias e nova criação.</p> <a class="link-arrow" style="margin-top: 16px; font-size: 0.75rem" href="/Conectesse-com-Deus/formacao/#biblica">
+Ver área
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </article><article class="track-card"> <div class="track-card__top"> <span class="mono text-muted">02</span> <span class="tag">2 trilhas</span> </div> <h3>Teologia Sistemática</h3> <p class="track-card__short">A fé em ordem</p> <p>Percorra todos os grandes loci da dogmática, das decisões históricas às perguntas contemporâneas.</p> <a class="link-arrow" style="margin-top: 16px; font-size: 0.75rem" href="/Conectesse-com-Deus/formacao/#sistematica">
+Ver área
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </article><article class="track-card"> <div class="track-card__top"> <span class="mono text-muted">03</span> <span class="tag">2 trilhas</span> </div> <h3>Escrituras e Bíblias</h3> <p class="track-card__short">Texto, cânon e tradução</p> <p>Entenda como a Bíblia chegou até nós e aprenda a escolher e comparar traduções e edições.</p> <a class="link-arrow" style="margin-top: 16px; font-size: 0.75rem" href="/Conectesse-com-Deus/formacao/#escrituras">
+Ver área
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </article><article class="track-card"> <div class="track-card__top"> <span class="mono text-muted">04</span> <span class="tag">1 trilhas</span> </div> <h3>História e Tradição</h3> <p class="track-card__short">Memória da igreja</p> <p>Conheça os concílios, as rupturas e as tradições que formaram a fé cristã ao longo dos séculos.</p> <a class="link-arrow" style="margin-top: 16px; font-size: 0.75rem" href="/Conectesse-com-Deus/formacao/#historia">
+Ver área
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </article><article class="track-card"> <div class="track-card__top"> <span class="mono text-muted">05</span> <span class="tag">3 trilhas</span> </div> <h3>Ministério e Pregação</h3> <p class="track-card__short">Serviço da Palavra</p> <p>Prepare-se para ensinar, pregar, servir e liderar com fidelidade ao texto e cuidado pelas pessoas.</p> <a class="link-arrow" style="margin-top: 16px; font-size: 0.75rem" href="/Conectesse-com-Deus/formacao/#ministerio">
+Ver área
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </article><article class="track-card"> <div class="track-card__top"> <span class="mono text-muted">06</span> <span class="tag">2 trilhas</span> </div> <h3>Cuidado e Vida</h3> <p class="track-card__short">Fé encarnada</p> <p>Integre teologia, saúde emocional e cuidado pastoral sem transformar o evangelho em técnica.</p> <a class="link-arrow" style="margin-top: 16px; font-size: 0.75rem" href="/Conectesse-com-Deus/formacao/#cuidado">
+Ver área
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </article> </div> </div> </section> <section class="section" aria-labelledby="trilhas-title"> <div class="container"> <div class="section-head"> <div class="section-head__text"> <p class="eyebrow">APRENDIZADO GUIADO</p> <h2 id="trilhas-title">Comece pelo centro da fé.</h2> <p>
+As três trilhas que sustentam o restante da formação: o fio da história bíblica, o corpo
+            da doutrina e a confiabilidade do texto. Sem pressa e sem pré-requisitos.
+</p> </div> <a class="link-arrow" href="/Conectesse-com-Deus/cursos/">
+Ver todas as trilhas
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </div> <div class="course-grid"> <a class="course-card" href="/Conectesse-com-Deus/cursos/teologia-biblica/" data-course-card="teologia-biblica" data-total-lessons="8" data-track="course_open" data-track-course="teologia-biblica" data-track-location="card"> <div class="course-cover cover--olive"> <div class="course-cover__top"> <span class="course-cover__number">13</span> <span class="course-cover__level">Intermediário</span> </div> <span class="course-cover__motif" aria-hidden="true"> → </span> <div class="course-cover__bottom"> <span class="course-cover__caption">Bíblia e interpretação</span> <span class="tag tag--dark">Destaque</span> </div> </div> <div class="course-card__body"> <div class="course-card__meta"> <span>Bíblia e interpretação</span> <span aria-hidden="true">·</span> <span>8 aulas</span> </div> <h3>Teologia Bíblica: o fio da história</h3> <p class="course-card__desc">Leia a Bíblia como uma história única: criação, aliança, exílio, Messias e nova criação, sem perder a diversidade dos textos.</p> <div class="course-card__footer"> <span>4h 14min</span> <span class="course-card__arrow" aria-hidden="true"> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </span> </div> <div class="course-card__progress" data-course-progress hidden> <div class="course-card__progress-label"> <span data-course-progress-text>0 de 8 aulas</span> <span data-course-progress-percent>0%</span> </div> <div class="progress" role="presentation"> <span class="progress__bar" data-course-progress-bar style="width: 0%"></span> </div> </div> </div> </a><a class="course-card" href="/Conectesse-com-Deus/cursos/teologia-sistematica/" data-course-card="teologia-sistematica" data-total-lessons="12" data-track="course_open" data-track-course="teologia-sistematica" data-track-location="card"> <div class="course-cover cover--ink"> <div class="course-cover__top"> <span class="course-cover__number">03</span> <span class="course-cover__level">Intermediário</span> </div> <span class="course-cover__motif" aria-hidden="true"> ✦ </span> <div class="course-cover__bottom"> <span class="course-cover__caption">Base teológica</span> <span class="tag tag--dark">Destaque</span> </div> </div> <div class="course-card__body"> <div class="course-card__meta"> <span>Base teológica</span> <span aria-hidden="true">·</span> <span>12 aulas</span> </div> <h3>Teologia Sistemática</h3> <p class="course-card__desc">Percorra todos os grandes loci da fé cristã — de Deus e da Trindade à Igreja e à esperança — com rigor, caridade e consciência histórica.</p> <div class="course-card__footer"> <span>6h 22min</span> <span class="course-card__arrow" aria-hidden="true"> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </span> </div> <div class="course-card__progress" data-course-progress hidden> <div class="course-card__progress-label"> <span data-course-progress-text>0 de 12 aulas</span> <span data-course-progress-percent>0%</span> </div> <div class="progress" role="presentation"> <span class="progress__bar" data-course-progress-bar style="width: 0%"></span> </div> </div> </div> </a><a class="course-card" href="/Conectesse-com-Deus/cursos/bibliologia-e-biblias/" data-course-card="bibliologia-e-biblias" data-total-lessons="6" data-track="course_open" data-track-course="bibliologia-e-biblias" data-track-location="card"> <div class="course-cover cover--clay"> <div class="course-cover__top"> <span class="course-cover__number">14</span> <span class="course-cover__level">Intermediário</span> </div> <span class="course-cover__motif" aria-hidden="true"> ▤ </span> <div class="course-cover__bottom"> <span class="course-cover__caption">Bíblia e interpretação</span> <span class="tag tag--dark">Destaque</span> </div> </div> <div class="course-card__body"> <div class="course-card__meta"> <span>Bíblia e interpretação</span> <span aria-hidden="true">·</span> <span>6 aulas</span> </div> <h3>Bibliologia: cânon, texto e Bíblias</h3> <p class="course-card__desc">Entenda como a Bíblia chegou até nós, como uma tradução é feita e como escolher a Bíblia certa para cada tipo de estudo.</p> <div class="course-card__footer"> <span>3h</span> <span class="course-card__arrow" aria-hidden="true"> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </span> </div> <div class="course-card__progress" data-course-progress hidden> <div class="course-card__progress-label"> <span data-course-progress-text>0 de 6 aulas</span> <span data-course-progress-percent>0%</span> </div> <div class="progress" role="presentation"> <span class="progress__bar" data-course-progress-bar style="width: 0%"></span> </div> </div> </div> </a> </div> </div> </section> <section class="section section--line" id="como-funciona" aria-labelledby="metodo-title"> <div class="container"> <div class="section-head"> <div class="section-head__text"> <p class="eyebrow">O MÉTODO</p> <h2 id="metodo-title">Estudo que cabe na vida real.</h2> <p>
+Trinta minutos por dia já bastam para criar um hábito. A Clareira organiza o caminho;
+            você define o ritmo.
+</p> </div> <a class="link-arrow" href="/Conectesse-com-Deus/continuar/">
+Abrir meu percurso
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </div> <div class="steps"> <article class="step"> <span class="step__number" aria-hidden="true"></span> <h3>Escolha uma trilha</h3> <p>
+Comece pelo fundamento ou vá direto ao tema que te interessa. Cada curso é
+            autossuficiente e indica o próximo passo.
+</p> </article> <article class="step"> <span class="step__number" aria-hidden="true"></span> <h3>Estude com método</h3> <p>
+Objetivos claros, texto direto, prática de estudo e perguntas de reflexão. Nada de
+            videoaula infinita ou conteúdo solto.
+</p> </article> <article class="step"> <span class="step__number" aria-hidden="true"></span> <h3>Registre e volte</h3> <p>
+Suas anotações e seu progresso ficam salvos. Entre com e-mail para sincronizar entre
+            dispositivos quando quiser.
+</p> </article> </div> </div> </section> <section class="section section--line" aria-labelledby="recursos-title"> <div class="container"> <div class="section-head"> <div class="section-head__text"> <p class="eyebrow">FERRAMENTAS DE ESTUDO</p> <h2 id="recursos-title">O texto no centro. Boa companhia ao redor.</h2> </div> </div> <div class="grid-3"> <article class="track-card"> <div class="bible-type__icon"> <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 5.5v16"/><path d="M8 7h8"/> </svg> </div> <h3>Guia de Bíblias</h3> <p>
+Compare tipos de Bíblia, traduções em português e critérios para escolher a edição certa
+            para cada objetivo.
+</p> <a class="link-arrow" style="margin-top: 16px" href="/Conectesse-com-Deus/biblias/">
+Abrir o guia
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </article> <article class="track-card"> <div class="bible-type__icon"> <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="m8 5 11 7-11 7V5Z"/> </svg> </div> <h3>Vídeos recomendados</h3> <p> 14 repertórios com pregações e aulas de canais de referência, sem player
+            embutido e sem rastreamento.
+</p> <a class="link-arrow" style="margin-top: 16px" href="/Conectesse-com-Deus/videos/">
+Ver repertório
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </article> <article class="track-card"> <div class="bible-type__icon"> <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/> </svg> </div> <h3>Equipe e revisão</h3> <p>
+Dez áreas de especialidade, fontes primárias, revisão cruzada e correção pública. Veja
+            como uma aula nasce.
+</p> <a class="link-arrow" style="margin-top: 16px" href="/Conectesse-com-Deus/equipe/">
+Conhecer a mesa
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </article> </div> </div> </section> <section class="section" aria-labelledby="biblioteca-title"> <div class="container"> <div class="section-head"> <div class="section-head__text"> <p class="eyebrow">BIBLIOTECA</p> <h2 id="biblioteca-title">Leituras para continuar pensando.</h2> </div> <a class="link-arrow" href="/Conectesse-com-Deus/biblioteca/">
+Abrir biblioteca
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </div> <div class="article-grid"> <a class="article-card" href="/Conectesse-com-Deus/biblioteca/biblioteca-essencial-de-teologia/"> <div class="article-card__meta"> <span>Leitura</span> <span>5 min de leitura</span> </div> <h3>Uma biblioteca essencial para começar</h3> <p>Uma seleção comentada de livros para começar em teologia: clássicos, introduções, história e literatura, com critérios de escolha.</p> <div class="article-card__footer"> <span>6 de outubro de 2026</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </div> </a><a class="article-card" href="/Conectesse-com-Deus/biblioteca/como-estudar-teologia-sem-pressa/"> <div class="article-card__meta"> <span>Método de estudo</span> <span>6 min de leitura</span> </div> <h3>Como estudar teologia sem pressa</h3> <p>Estudar teologia exige ritmo, não velocidade. Um guia para ler com atenção, fazer notas úteis e sustentar o estudo ao longo do tempo.</p> <div class="article-card__footer"> <span>18 de setembro de 2026</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </div> </a><a class="article-card" href="/Conectesse-com-Deus/biblioteca/ler-a-biblia-em-contexto/"> <div class="article-card__meta"> <span>Bíblia</span> <span>8 min de leitura</span> </div> <h3>Ler a Bíblia em contexto: um guia inicial</h3> <p>Aprender a ler a Bíblia em contexto: gênero, história e comunidade. Um guia inicial para interpretar com rigor e humildade.</p> <div class="article-card__footer"> <span>4 de setembro de 2026</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </div> </a> </div> </div> </section> <section class="section--tight"> <div class="container"> <div class="manifesto"> <p class="eyebrow" style="color: #b9c4b6">
+MANIFESTO CLAREIRA
+</p> <blockquote class="manifesto__quote" style="margin-top: 18px">
+A fé não perde quando pergunta. Perde quando deixa de escutar. Estudar teologia é aprender
+          a sustentar a pergunta <em>com rigor, com carinho e com tempo</em>.
+</blockquote> <div class="manifesto__footer"> <span>Um lugar para pensar devagar.</span> <a class="link-arrow" href="/Conectesse-com-Deus/sobre/" style="color: var(--cream); border-color: #7f8b79">
+Nossa proposta
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </div> </div> </div> </section> <section class="section"> <div class="container"> <div class="cta-panel"> <div class="cta-panel__inner"> <div> <p class="eyebrow">COMECE AGORA</p> <h2>Comece pela pergunta que você já tem.</h2> <p>
+Conheça o percurso completo ou entre por uma trilha específica. A primeira aula leva
+              menos de meia hora.
+</p> </div> <a class="btn btn--accent" href="/Conectesse-com-Deus/formacao/" data-track="cta_click" data-track-id="home_final" data-track-location="final_cta">
+Ver a formação completa
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </div> </div> </div> </section>  </main> <footer class="site-footer"> <div class="container"> <div class="footer-grid"> <div class="footer-brand"> <a class="brand" href="/Conectesse-com-Deus/"> <svg class="brand__mark" viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false"> <path d="M9 34c2.8-8.7 8.3-14.5 15-14.5S36.2 25.3 39 34" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path> <path d="M7 34h34" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path> <circle cx="24" cy="21" r="4.3" fill="var(--accent)"></circle> </svg> <span>
+clareira<span class="brand__dot">.</span> </span> </a> <p>
+Uma escola de teologia bíblica e sistemática para pensar a fé com método, profundidade e
+          liberdade. Conteúdo educativo, feito para perguntas honestas.
+</p> </div> <div> <p class="footer-title">Estudar</p> <ul class="footer-links"> <li> <a href="/Conectesse-com-Deus/formacao/">Formação completa</a> </li><li> <a href="/Conectesse-com-Deus/cursos/">Todas as trilhas</a> </li><li> <a href="/Conectesse-com-Deus/continuar/">Meu percurso</a> </li><li> <a href="/Conectesse-com-Deus/biblias/">Guia de Bíblias</a> </li><li> <a href="/Conectesse-com-Deus/videos/">Vídeos recomendados</a> </li><li> <a href="/Conectesse-com-Deus/biblioteca/">Biblioteca</a> </li><li> <a href="/Conectesse-com-Deus/pregacoes/">Construtor de pregações</a> </li> </ul> </div> <div> <p class="footer-title">Institucional</p> <ul class="footer-links"> <li> <a href="/Conectesse-com-Deus/sobre/">Sobre a Clareira</a> </li><li> <a href="/Conectesse-com-Deus/equipe/">Equipe e revisão</a> </li><li> <a href="/Conectesse-com-Deus/contato/">Contato</a> </li><li> <a href="/Conectesse-com-Deus/contato/#privacidade">Exercer direitos LGPD</a> </li> </ul> </div> <div> <p class="footer-title">Legal</p> <ul class="footer-links"> <li> <a href="/Conectesse-com-Deus/privacidade/">Política de privacidade</a> </li><li> <a href="/Conectesse-com-Deus/termos/">Termos e condições</a> </li><li> <a href="/Conectesse-com-Deus/cookies/">Política de cookies</a> </li> <li> <button type="button" class="footer-link-button" data-consent-open>
+Preferências de cookies
+</button> </li> </ul> </div> <div class="footer-newsletter"> <h3>Uma carta por mês</h3> <p>
+Leituras, perguntas e novidades das trilhas. Sem ruído, sem cobrança. Cancele quando
+          quiser.
+</p> <form class="newsletter-form" data-newsletter-form novalidate hidden> <label class="sr-only" for="newsletter-email">
+Seu e-mail
+</label> <input class="input" id="newsletter-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="voce@email.com" required> <div class="honeypot" aria-hidden="true"> <label for="newsletter-website">Não preencha</label> <input id="newsletter-website" name="website" type="text" tabindex="-1" autocomplete="off"> </div> <button class="btn btn--accent" type="submit">
+Assinar
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </button> <label class="checkbox newsletter-consent"> <input type="checkbox" name="consent" required> <span>
+Concordo em receber e-mails e li a
+<a href="/Conectesse-com-Deus/privacidade/">política de privacidade</a>.
+</span> </label> <p class="newsletter-status" data-newsletter-status role="status"></p> </form> <div class="footer-newsletter__fallback"> <p>
+Quer receber a próxima carta? Escreva para a equipe e avisaremos quando as inscrições
+              abrirem.
+</p> <a class="link-arrow" href="mailto:contato@clareira.com.br?subject=Quero%20receber%20a%20carta%20mensal">
+Pedir para participar
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">  <path d="M4 12h15"/><path d="m13 6 6 6-6 6"/> </svg> </a> </div> </div> </div> <div class="footer-bottom"> <span>
+© <span data-current-year>2026</span> Clareira. Conteúdo educativo.
+</span> <div class="footer-bottom__links"> <a href="mailto:contato@clareira.com.br">contato@clareira.com.br</a> <a href="/Conectesse-com-Deus/termos/">Termos</a> <a href="/Conectesse-com-Deus/privacidade/">Privacidade</a> <a href="/Conectesse-com-Deus/cookies/">Cookies</a> <button type="button" data-consent-open>
+Gerenciar cookies
+</button> </div> </div> </div> </footer> <section class="cookie-banner" data-cookie-banner aria-labelledby="cookie-title" aria-describedby="cookie-desc" hidden> <button class="cookie-banner__close" type="button" data-consent-close aria-label="Fechar aviso de cookies">
+×
+</button> <div class="cookie-banner__grid"> <div> <h2 id="cookie-title">Cookies, com transparência.</h2> <p id="cookie-desc">
+Usamos cookies essenciais para manter sua sessão e suas preferências. Com seu consentimento,
+        também usamos o Google Analytics para entender como o site é usado. Nada de anúncios. Você
+        pode mudar de ideia quando quiser.
+<a href="/Conectesse-com-Deus/cookies/">Saber mais</a>.
+</p> </div> <div class="cookie-banner__actions"> <button class="btn btn--ghost" type="button" data-consent-reject>
+Rejeitar opcionais
+</button> <button class="btn btn--accent" type="button" data-consent-accept>
+Aceitar todos
+</button> <button class="btn btn--text" type="button" data-consent-settings-toggle aria-expanded="false" aria-controls="cookie-settings">
+Preferências
+</button> </div> <div class="cookie-banner__settings" id="cookie-settings" data-consent-settings hidden> <label class="checkbox"> <input type="checkbox" data-consent-analytics> <span> <strong>Análise de uso (opcional).</strong> Ajuda a identificar páginas e aulas que
+          precisam melhorar. Não usamos os dados para publicidade.
+</span> </label> <div class="button-row" style="margin-top: 12px"> <button class="btn btn--ghost btn--sm" type="button" data-consent-save>
+Salvar preferências
+</button> <span class="mono text-muted" data-consent-status>
+Nenhuma preferência registrada.
+</span> </div> </div> </div> </section> <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="false"></div> <noscript> <div class="noscript-note">
+O conteúdo funciona sem JavaScript, mas progresso, notas e preferências de cookies precisam
+        dele para serem salvos.
+</div> </noscript><script type="module" src="/Conectesse-com-Deus/_astro/BaseLayout.astro_astro_type_script_index_0_lang.CigMjppB.js"></script> </body> </html><script type="module" src="/Conectesse-com-Deus/_astro/index.astro_astro_type_script_index_0_lang.B3ag0eQ2.js"></script>
